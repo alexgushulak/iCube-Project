@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		FAB1A0C71D2DBBFF005ED89E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB1A0C61D2DBBFF005ED89E /* AppDelegate.swift */; };
-		FAB1A0C91D2DBBFF005ED89E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB1A0C81D2DBBFF005ED89E /* ViewController.swift */; };
 		FAB1A0CC1D2DBBFF005ED89E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAB1A0CA1D2DBBFF005ED89E /* Main.storyboard */; };
 		FAB1A0CE1D2DBBFF005ED89E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAB1A0CD1D2DBBFF005ED89E /* Assets.xcassets */; };
 		FAB1A0D11D2DBBFF005ED89E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAB1A0CF1D2DBBFF005ED89E /* LaunchScreen.storyboard */; };
 		FAB1A0DC1D2DBBFF005ED89E /* iCube2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB1A0DB1D2DBBFF005ED89E /* iCube2Tests.swift */; };
 		FAB1A0E71D2DBBFF005ED89E /* iCube2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB1A0E61D2DBBFF005ED89E /* iCube2UITests.swift */; };
+		FAB1A0F51D2DC411005ED89E /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB1A0F41D2DC411005ED89E /* StatisticsViewController.swift */; };
+		FAB1A0F71D2DC429005ED89E /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB1A0F61D2DC429005ED89E /* TimerViewController.swift */; };
+		FAB1A0F91D2DC433005ED89E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB1A0F81D2DC433005ED89E /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		FAB1A0C31D2DBBFF005ED89E /* iCube2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iCube2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAB1A0C31D2DBBFF005ED89E /* iCube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iCube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB1A0C61D2DBBFF005ED89E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FAB1A0C81D2DBBFF005ED89E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FAB1A0CB1D2DBBFF005ED89E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FAB1A0CD1D2DBBFF005ED89E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAB1A0D01D2DBBFF005ED89E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +48,9 @@
 		FAB1A0E21D2DBBFF005ED89E /* iCube2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iCube2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB1A0E61D2DBBFF005ED89E /* iCube2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCube2UITests.swift; sourceTree = "<group>"; };
 		FAB1A0E81D2DBBFF005ED89E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAB1A0F41D2DC411005ED89E /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
+		FAB1A0F61D2DC429005ED89E /* TimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		FAB1A0F81D2DC433005ED89E /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +91,7 @@
 		FAB1A0C41D2DBBFF005ED89E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FAB1A0C31D2DBBFF005ED89E /* iCube2.app */,
+				FAB1A0C31D2DBBFF005ED89E /* iCube.app */,
 				FAB1A0D71D2DBBFF005ED89E /* iCube2Tests.xctest */,
 				FAB1A0E21D2DBBFF005ED89E /* iCube2UITests.xctest */,
 			);
@@ -98,10 +102,12 @@
 			isa = PBXGroup;
 			children = (
 				FAB1A0C61D2DBBFF005ED89E /* AppDelegate.swift */,
-				FAB1A0C81D2DBBFF005ED89E /* ViewController.swift */,
+				FAB1A0F41D2DC411005ED89E /* StatisticsViewController.swift */,
+				FAB1A0F61D2DC429005ED89E /* TimerViewController.swift */,
+				FAB1A0F81D2DC433005ED89E /* SettingsViewController.swift */,
 				FAB1A0CA1D2DBBFF005ED89E /* Main.storyboard */,
-				FAB1A0CD1D2DBBFF005ED89E /* Assets.xcassets */,
 				FAB1A0CF1D2DBBFF005ED89E /* LaunchScreen.storyboard */,
+				FAB1A0CD1D2DBBFF005ED89E /* Assets.xcassets */,
 				FAB1A0D21D2DBBFF005ED89E /* Info.plist */,
 			);
 			path = iCube2;
@@ -142,7 +148,7 @@
 			);
 			name = iCube2;
 			productName = iCube2;
-			productReference = FAB1A0C31D2DBBFF005ED89E /* iCube2.app */;
+			productReference = FAB1A0C31D2DBBFF005ED89E /* iCube.app */;
 			productType = "com.apple.product-type.application";
 		};
 		FAB1A0D61D2DBBFF005ED89E /* iCube2Tests */ = {
@@ -193,6 +199,7 @@
 				TargetAttributes = {
 					FAB1A0C21D2DBBFF005ED89E = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 2W98QC574T;
 					};
 					FAB1A0D61D2DBBFF005ED89E = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -256,7 +263,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAB1A0C91D2DBBFF005ED89E /* ViewController.swift in Sources */,
+				FAB1A0F71D2DC429005ED89E /* TimerViewController.swift in Sources */,
+				FAB1A0F51D2DC411005ED89E /* StatisticsViewController.swift in Sources */,
+				FAB1A0F91D2DC433005ED89E /* SettingsViewController.swift in Sources */,
 				FAB1A0C71D2DBBFF005ED89E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,10 +410,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iCube2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dangledev.gushulak.iCube2;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dangledev.gushulak.iCube-v2";
+				PRODUCT_NAME = iCube;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -412,10 +424,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iCube2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dangledev.gushulak.iCube2;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dangledev.gushulak.iCube-v2";
+				PRODUCT_NAME = iCube;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
