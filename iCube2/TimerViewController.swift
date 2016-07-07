@@ -43,26 +43,32 @@ class TimerViewController: UIViewController {
             // I got 3 decimal places somehow pls don't fuck with this if running on the simulator the time appears to be off for some damn reason but it works if run on an actual iPhone
            if(secondDisplay.textColor == UIColor.greenColor()){
                 timer = NSTimer.scheduledTimerWithTimeInterval(0.001, target: self, selector: #selector(runTimer), userInfo: nil, repeats: true)
+            //starts timer and chagnes color to white
                 secondDisplay.textColor = UIColor.whiteColor()
                 millisecondDisplay.textColor = UIColor.whiteColor()
                 periodDisplay.textColor = UIColor.whiteColor()
                 minutesDisplay.textColor = UIColor.whiteColor()
                 decasecondDisplay.textColor = UIColor.whiteColor()
                 isRunning = true
+                letGo = true
             }
-            if(secondDisplay.textColor == UIColor.redColor()){
+            //changes red back to white if the timer doesnt start and resets isRunning letGo and countDownTimer
+            else if(secondDisplay.textColor == UIColor.redColor()){
                 secondDisplay.textColor = UIColor.whiteColor()
                 millisecondDisplay.textColor = UIColor.whiteColor()
                 periodDisplay.textColor = UIColor.whiteColor()
                 minutesDisplay.textColor = UIColor.whiteColor()
                 decasecondDisplay.textColor = UIColor.whiteColor()
-                countDownTimer.invalidate()
                 isRunning = false
+                countDownTimer.invalidate()
+                letGo = false
             }
-            letGo = true
+            
         }
         else{
+            //invalidates timers and resets variables
             timer.invalidate()
+            countDownTimer.invalidate()
             decaseconds = 0
             minutes = 0
             seconds = 0
@@ -71,6 +77,7 @@ class TimerViewController: UIViewController {
             letGo = false
         }
     }
+    //starts countdown when you first touch the timer sets color to red and starts the timer to change to green
     @IBAction func initializeTimer(sender: AnyObject) {
         if(!isRunning){
             secondDisplay.textColor = UIColor.redColor()
@@ -78,11 +85,10 @@ class TimerViewController: UIViewController {
             periodDisplay.textColor = UIColor.redColor()
             minutesDisplay.textColor = UIColor.redColor()
              decasecondDisplay.textColor = UIColor.redColor()
-            countDownTimer.invalidate()
             countDownTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(changeToGreen), userInfo: nil, repeats: false)
         }
     }
-    //changes the color
+    //changes the color to green after .5 seconds
     func changeToGreen(){
         if(!isRunning && !letGo){
             secondDisplay.textColor = UIColor.greenColor()
