@@ -199,7 +199,7 @@
 				TargetAttributes = {
 					FAB1A0C21D2DBBFF005ED89E = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 2W98QC574T;
+						DevelopmentTeam = J45VL7CX88;
 					};
 					FAB1A0D61D2DBBFF005ED89E = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -414,7 +414,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iCube2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dangledev.gushulak.iCube-v2";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dangledev.gushulak.iCube-v2.0";
 				PRODUCT_NAME = iCube;
 				PROVISIONING_PROFILE = "";
 			};
@@ -428,7 +428,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iCube2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dangledev.gushulak.iCube-v2";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dangledev.gushulak.iCube-v2.0";
 				PRODUCT_NAME = iCube;
 				PROVISIONING_PROFILE = "";
 			};
@@ -499,6 +499,7 @@
 				FAB1A0ED1D2DBBFF005ED89E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FAB1A0EE1D2DBBFF005ED89E /* Build configuration list for PBXNativeTarget "iCube2Tests" */ = {
 			isa = XCConfigurationList;
@@ -507,6 +508,7 @@
 				FAB1A0F01D2DBBFF005ED89E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FAB1A0F11D2DBBFF005ED89E /* Build configuration list for PBXNativeTarget "iCube2UITests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +517,7 @@
 				FAB1A0F31D2DBBFF005ED89E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -25,51 +25,72 @@ class TimerViewController: UIViewController {
         return UIStatusBarStyle.LightContent
     }
     
-    @IBOutlet weak var displayTimeLabel: UILabel!
     
-    @IBAction func start(sender: AnyObject) {
-        
+    @IBOutlet weak var millisecondDisplay: UILabel!
+   
+    @IBOutlet weak var periodDisplay: UILabel!
+    
+    
+    @IBOutlet weak var secondDisplay: UILabel!
+    
+    @IBOutlet weak var decasecondDisplay: UILabel!
+    
+    @IBOutlet weak var minutesDisplay: UILabel!
+    
+    @IBAction func toggleTimer(sender: AnyObject) {
+        if(!isRunning){
+            // I got 3 decimal places somehow pls don't fuck with this
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.0001, target: self, selector: #selector(runTimer), userInfo: nil, repeats: true)
+            isRunning = true
+        }
+        else{
+            timer.invalidate()
+            decaseconds = 0
+            minutes = 0
+            seconds = 0
+            milliseconds = 0
+            isRunning = false
+        }
     }
     
-    @IBAction func stop(sender: AnyObject) {
+    //function executed every given time interval by the timer
+    func runTimer(){
+        //updating each variable for the amount of time that has passed
+        milliseconds += 1
+        if(milliseconds == 1000){
+            seconds += 1
+            milliseconds = 0
+        }
+        if(seconds == 10){
+            decaseconds += 1
+            seconds = 0
+        }
+        if(decaseconds == 6){
+            minutes += 1
+            decaseconds = 0
+        }
+        //updating the labels with the appropriate numbers
+        millisecondDisplay.text = "\(milliseconds)"
+        secondDisplay.text = "\(seconds)"
+        if (minutes != 0){
+            decasecondDisplay.text = "\(decaseconds)"
+            minutesDisplay.text = "\(minutes):"
+        }
+        else {
+            minutesDisplay.text = ""
+            if(decaseconds == 0){
+                decasecondDisplay.text = ""
+            }
+            else {
+                decasecondDisplay.text = "\(decaseconds)"
+            }
+        }
     }
-    
-    var startTime = NSTimeInterval()
-    
-    func updateTime() {
-        var currentTime = NSDate.timeIntervalSinceReferenceDate()
-        
-        //Find the difference between current time and start time
-        
-        var elapsedTime: NSTimeInterval = currentTime - startTime
-        
-        // calculate the minutes in elapsed time
-        
-        let minutes = UInt8(elapsedTime / 60.0)
-        
-        elapsedTime -= (NSTimeInterval(minutes) * 60)
-        
-        // calculate the seconds in elapsed time
-        
-        let seconds = UInt8(elapsedTime)
-        
-        elapsedTime -= NSTimeInterval(seconds)
-        
-        //  find out the fraction of milliseconds to be displayed.
-        
-        let fraction = UInt8(elapsedTime * 100)
-        
-        // add the leading zero for minutes, seconds, and milli
-        
-        let strMinutes = String(format: "d%02d", minutes)
-        let strSeconds = String(format: "d%02d", seconds)
-        let strFraction = String(format: "d%02d", fraction)
-        
-        // concatenate minutes, seconds and milliseconds
-        
-        displayTimeLabel.text = "\(strMinutes):\(strSeconds):\(strFractions):\"
-    }
-
-    
-    
+    //declaration of all variables
+    var isRunning = false
+    var milliseconds = 0
+    var seconds = 0
+    var decaseconds = 0
+    var minutes = 0
+    var timer = NSTimer()
 }
