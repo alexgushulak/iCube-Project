@@ -51,6 +51,7 @@
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KZG-X6-dra">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <connections>
+                                    <action selector="initializeTimer:" destination="Aay-aK-GO8" eventType="touchDown" id="aUd-2k-6Ib"/>
                                     <action selector="toggleTimer:" destination="Aay-aK-GO8" eventType="touchUpInside" id="nig-0L-caJ"/>
                                 </connections>
                             </button>
