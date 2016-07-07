@@ -24,7 +24,8 @@ class TimerViewController: UIViewController {
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
-    
+    //supposed to make it so the app doesn't let the phone go to sleep while the timer is running but it doesn't work must fix someday
+    //UIApplication.sharedApplication().idleTimerDisabled = true
     
     @IBOutlet weak var millisecondDisplay: UILabel!
    
@@ -39,8 +40,8 @@ class TimerViewController: UIViewController {
     
     @IBAction func toggleTimer(sender: AnyObject) {
         if(!isRunning){
-            // I got 3 decimal places somehow pls don't fuck with this
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.0001, target: self, selector: #selector(runTimer), userInfo: nil, repeats: true)
+            // I got 3 decimal places somehow pls don't fuck with this if running on the simulator the time appears to be off for some damn reason but it works if run on an actual iPhone
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.001, target: self, selector: #selector(runTimer), userInfo: nil, repeats: true)
             isRunning = true
         }
         else{
@@ -52,7 +53,7 @@ class TimerViewController: UIViewController {
             isRunning = false
         }
     }
-    
+    //doesn't work if the user changes pages should invalidate timer if the user leaves the page
     //function executed every given time interval by the timer
     func runTimer(){
         //updating each variable for the amount of time that has passed
