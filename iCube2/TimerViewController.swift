@@ -24,9 +24,7 @@ class TimerViewController: UIViewController {
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
-    //supposed to make it so the app doesn't let the phone go to sleep while the timer is running but it doesn't work must fix someday
-    //UIApplication.sharedApplication().idleTimerDisabled = true
-    
+      
     @IBOutlet weak var millisecondDisplay: UILabel!
    
     @IBOutlet weak var periodDisplay: UILabel!

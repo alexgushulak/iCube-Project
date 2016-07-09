@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31F598C71D2F4C4900B8F731 /* scrambleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F598C61D2F4C4900B8F731 /* scrambleGenerator.swift */; };
 		FAB1A0C71D2DBBFF005ED89E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB1A0C61D2DBBFF005ED89E /* AppDelegate.swift */; };
 		FAB1A0CC1D2DBBFF005ED89E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAB1A0CA1D2DBBFF005ED89E /* Main.storyboard */; };
 		FAB1A0CE1D2DBBFF005ED89E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAB1A0CD1D2DBBFF005ED89E /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		31F598C61D2F4C4900B8F731 /* scrambleGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = scrambleGenerator.swift; sourceTree = "<group>"; };
 		FAB1A0C31D2DBBFF005ED89E /* iCube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iCube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB1A0C61D2DBBFF005ED89E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAB1A0CB1D2DBBFF005ED89E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				FAB1A0CF1D2DBBFF005ED89E /* LaunchScreen.storyboard */,
 				FAB1A0CD1D2DBBFF005ED89E /* Assets.xcassets */,
 				FAB1A0D21D2DBBFF005ED89E /* Info.plist */,
+				31F598C61D2F4C4900B8F731 /* scrambleGenerator.swift */,
 			);
 			path = iCube2;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				FAB1A0F51D2DC411005ED89E /* StatisticsViewController.swift in Sources */,
 				FAB1A0F91D2DC433005ED89E /* SettingsViewController.swift in Sources */,
 				FAB1A0C71D2DBBFF005ED89E /* AppDelegate.swift in Sources */,
+				31F598C71D2F4C4900B8F731 /* scrambleGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
