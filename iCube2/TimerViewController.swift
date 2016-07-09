@@ -97,6 +97,30 @@ class TimerViewController: UIViewController {
         }
 
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "Load View"){
+            resetTimer()
+        }
+    }
+    //resets the entier timer to it's initial state
+    func resetTimer(){
+        isRunning = false
+        milliseconds = 0
+        seconds = 0
+        decaseconds = 0
+        minutes = 0
+        timer.invalidate()
+        countDownTimer.invalidate()
+        letGo = false
+        
+        secondDisplay.textColor = UIColor.whiteColor()
+        millisecondDisplay.textColor = UIColor.whiteColor()
+        periodDisplay.textColor = UIColor.whiteColor()
+        minutesDisplay.textColor = UIColor.whiteColor()
+        decasecondDisplay.textColor = UIColor.whiteColor()
+
+          }
     //doesn't work if the user changes pages should invalidate timer if the user leaves the page
     //function executed every given time interval by the timer
     func runTimer(){
@@ -142,4 +166,5 @@ class TimerViewController: UIViewController {
     var timer = NSTimer()
     var countDownTimer = NSTimer()
     var letGo = false
+    var generator3 = scrambleGenereator(num: 3)
 }
