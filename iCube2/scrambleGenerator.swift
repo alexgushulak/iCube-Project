@@ -13,14 +13,18 @@ class scrambleGenerator {
     var str = ""
     var len = 0
     var rand = 0
+    var opposite = ""
     
-    //initializer that has the number of sides passed in
+    //initializer that has the number of sides passed in assigns a len to each scramble depending on the cube size
     init(num: Int) {
         sides = num
         if(sides == 2){
             len = 20
         }
-        else if(sides == 3 || sides == 4){
+        else if(sides == 3){
+            len = 25
+        }
+        else if (sides == 4){
             len = 30
         }
         else {
@@ -42,23 +46,29 @@ class scrambleGenerator {
                 rand = randomInt(1, max: 60)
                 if(rand < 10){
                     str = "F"
+                    opposite = "B"
                 }
                 else if (rand < 20){
                     str = "B"
+                    opposite = "F"
                 }
                 else if (rand < 30){
                     str = "R"
+                    opposite = "L"
                 }
                 else if (rand < 40){
                     str = "L"
+                    opposite = "R"
                 }
                 else if(rand < 50){
                     str = "U"
+                    opposite = "D"
                 }
                 else{
                     str = "D"
+                    opposite = "U"
                 }
-                } while(index > 0 && last![0] == str)
+                } while(index > 0 && (last![0] == str  || last![0] == opposite))
                 if((sides == 4 || sides == 5) && rand % 4 == 1){
                     str = "\(str)w"
                 }
