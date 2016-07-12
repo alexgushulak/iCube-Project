@@ -14,7 +14,14 @@ class TimerViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.blackColor()
         // Do any additional setup after loading the view, typically from a nib.
-    }
+        timerLabel.textColor = UIColor.whiteColor()
+        state = .Pending
+        generator = scrambleGenerator(num: 3)
+        scrambleLabel.textColor = UIColor.whiteColor()
+        scrambleLabel.numberOfLines = 0
+        scrambleLabel.text = toString(generator.generate())
+        [scrambleLabel .sizeToFit()]
+        }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -25,146 +32,123 @@ class TimerViewController: UIViewController {
         return UIStatusBarStyle.LightContent
     }
       
-    @IBOutlet weak var millisecondDisplay: UILabel!
+    @IBOutlet weak var timerLabel: UILabel!
+    
+    @IBOutlet weak var scrambleLabel: UILabel!
    
-    @IBOutlet weak var periodDisplay: UILabel!
     
+    //attempt for a new timer that fucking works now!!!
+    private var displayLink: CADisplayLink?
+    private var countDownTimer = NSTimer()
+    private var minutes = 0.0
+    private var seconds = "0.0"
+    private var cubeSize = 3
+    private var generator = scrambleGenerator(num: 3)
     
-    @IBOutlet weak var secondDisplay: UILabel!
-    
-    @IBOutlet weak var decasecondDisplay: UILabel!
-    
-    @IBOutlet weak var minutesDisplay: UILabel!
-    
-    @IBAction func toggleTimer(sender: AnyObject) {
-        if(!isRunning){
-            // I got 3 decimal places somehow pls don't fuck with this if running on the simulator the time appears to be off for some damn reason but it works if run on an actual iPhone
-           if(secondDisplay.textColor == UIColor.greenColor()){
-                timer = NSTimer.scheduledTimerWithTimeInterval(0.001, target: self, selector: #selector(runTimer), userInfo: nil, repeats: true)
-            //starts timer and chagnes color to white
-                secondDisplay.textColor = UIColor.whiteColor()
-                millisecondDisplay.textColor = UIColor.whiteColor()
-                periodDisplay.textColor = UIColor.whiteColor()
-                minutesDisplay.textColor = UIColor.whiteColor()
-                decasecondDisplay.textColor = UIColor.whiteColor()
-                isRunning = true
-                letGo = true
-            }
-            //changes red back to white if the timer doesnt start and resets isRunning letGo and countDownTimer
-            else if(secondDisplay.textColor == UIColor.redColor()){
-                secondDisplay.textColor = UIColor.whiteColor()
-                millisecondDisplay.textColor = UIColor.whiteColor()
-                periodDisplay.textColor = UIColor.whiteColor()
-                minutesDisplay.textColor = UIColor.whiteColor()
-                decasecondDisplay.textColor = UIColor.whiteColor()
-                isRunning = false
-                countDownTimer.invalidate()
-                letGo = false
-            }
-            
-        }
-        else{
-            //invalidates timers and resets variables
-            timer.invalidate()
-            countDownTimer.invalidate()
-            decaseconds = 0
-            minutes = 0
-            seconds = 0
-            milliseconds = 0
-            isRunning = false
-            letGo = false
+    func changeColor(){
+        timerLabel.textColor = UIColor.greenColor()
+    }
+    private var startTime: CFAbsoluteTime = 0
+    private var lastTime: CFAbsoluteTime = 0
+    private var endTime: CFAbsoluteTime = 0 {
+        didSet {
+            updateLabel()
         }
     }
-    //starts countdown when you first touch the timer sets color to red and starts the timer to change to green
-    @IBAction func initializeTimer(sender: AnyObject) {
-        if(!isRunning){
-            secondDisplay.textColor = UIColor.redColor()
-            millisecondDisplay.textColor = UIColor.redColor()
-            periodDisplay.textColor = UIColor.redColor()
-            minutesDisplay.textColor = UIColor.redColor()
-             decasecondDisplay.textColor = UIColor.redColor()
-            countDownTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(changeToGreen), userInfo: nil, repeats: false)
-        }
-    }
-    //changes the color to green after .5 seconds
-    func changeToGreen(){
-        if(!isRunning && !letGo){
-            secondDisplay.textColor = UIColor.greenColor()
-            millisecondDisplay.textColor = UIColor.greenColor()
-            periodDisplay.textColor = UIColor.greenColor()
-            minutesDisplay.textColor = UIColor.greenColor()
-            decasecondDisplay.textColor = UIColor.greenColor()
-        }
-
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "Load View"){
-            resetTimer()
-        }
-    }
-    //resets the entier timer to it's initial state
-    func resetTimer(){
-        isRunning = false
-        milliseconds = 0
-        seconds = 0
-        decaseconds = 0
-        minutes = 0
-        timer.invalidate()
-        countDownTimer.invalidate()
-        letGo = false
+    private enum State {
+        case Stopped
+        case Pending
+        case Running
         
-        secondDisplay.textColor = UIColor.whiteColor()
-        millisecondDisplay.textColor = UIColor.whiteColor()
-        periodDisplay.textColor = UIColor.whiteColor()
-        minutesDisplay.textColor = UIColor.whiteColor()
-        decasecondDisplay.textColor = UIColor.whiteColor()
-
-          }
-    //doesn't work if the user changes pages should invalidate timer if the user leaves the page
-    //function executed every given time interval by the timer
-    func runTimer(){
-        //updating each variable for the amount of time that has passed
-        if(secondDisplay.textColor != UIColor.redColor()){
-            milliseconds += 1
-            if(milliseconds == 1000){
-                seconds += 1
-                milliseconds = 0
-            }
-            if(seconds == 10){
-                decaseconds += 1
-                seconds = 0
-            }
-            if(decaseconds == 6){
-                minutes += 1
-                decaseconds = 0
-            }
-            //updating the labels with the appropriate numbers
-            millisecondDisplay.text = "\(milliseconds)"
-            secondDisplay.text = "\(seconds)"
-            if (minutes != 0){
-                decasecondDisplay.text = "\(decaseconds)"
-                minutesDisplay.text = "\(minutes):"
-            }
-            else {
-                minutesDisplay.text = ""
-                if(decaseconds == 0){
-                    decasecondDisplay.text = ""
-                }
-                else {
-                    decasecondDisplay.text = "\(decaseconds)"
-                }
+        var labelColor: UIColor {
+            switch self {
+            case .Pending: return UIColor.redColor()
+            case .Stopped, .Running: return UIColor.whiteColor()
             }
         }
     }
-    //declaration of all variables
-    var isRunning = false
-    var milliseconds = 0
-    var seconds = 0
-    var decaseconds = 0
-    var minutes = 0
-    var timer = NSTimer()
-    var countDownTimer = NSTimer()
-    var letGo = false
-    var generator3 = scrambleGenereator(num: 3)
+    private var elapsedTime: NSTimeInterval {
+        switch state {
+        case .Stopped, .Pending: return lastTime
+        case .Running: return CFAbsoluteTimeGetCurrent() - startTime
+        }
+    }
+    private func updateLabel() {
+        seconds = String(format: "%.02f", elapsedTime)
+        if(minutes > 1){
+            seconds = String(format: "%.02f", (60.0 * minutes - elapsedTime))
+        }
+        if(minutes == 0){
+            timerLabel.text = "\(seconds)"
+        }
+        else {
+            timerLabel.text = "\(minutes):\(seconds)"
+        }
+
+    }
+    private var state = State.Stopped {
+        didSet {
+            updateLabel()
+        }
+    }
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        createDisplayLinkIfNeeded()
+        
+        switch state {
+        case .Stopped:
+            state = .Pending
+        case .Pending:
+            if(timerLabel.textColor == UIColor.whiteColor()){
+            timerLabel.textColor = UIColor.redColor()
+            countDownTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(changeColor), userInfo: nil, repeats: false)
+            }
+        case .Running:
+            endTime = CFAbsoluteTimeGetCurrent()
+            lastTime = endTime - startTime
+            state = .Stopped
+            displayLink?.paused = true
+            scrambleLabel.text = toString(generator.generate())
+            [scrambleLabel .sizeToFit()]
+        }
+    }
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if timerLabel.textColor == UIColor.greenColor() {
+            startTime = CFAbsoluteTimeGetCurrent()
+            displayLink?.paused = false
+            state = .Running
+            timerLabel.textColor = UIColor.whiteColor()
+        }
+        if timerLabel.textColor == UIColor.redColor(){
+            state = .Stopped
+            timerLabel.textColor = UIColor.whiteColor()
+            countDownTimer.invalidate()
+            startTime = CFAbsoluteTimeGetCurrent()
+            endTime = CFAbsoluteTimeGetCurrent()
+
+        }
+        if(state == .Stopped){
+            state = .Pending
+        }
+    }
+    private func createDisplayLinkIfNeeded() {
+        guard self.displayLink == nil else { return }
+        let displayLink = CADisplayLink(target: self, selector: #selector(TimerViewController.displayLinkDidFire(_:)))
+        displayLink.paused = true
+        displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
+        self.displayLink = displayLink
+    }
+    func displayLinkDidFire(_: CADisplayLink) {
+        updateLabel()
+        if(elapsedTime == 60.00){
+            minutes += 1
+        }
+    }
+    func toString(arrayOne: [String?])->String{
+        let len = arrayOne.count
+        var ret = ""
+        for index in 0...(len-1){
+            ret = "\(ret)\(arrayOne[index]!)"
+        }
+        return ret
+    }
 }

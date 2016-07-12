@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         // makes sure the phone wont go to sleep while the app is running cause no one wants to be mid solve and have their phone go to sleep
         UIApplication.sharedApplication().idleTimerDisabled = true
+       
         return true
     }
 
