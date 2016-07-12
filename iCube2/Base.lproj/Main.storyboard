@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Axl-IA-esu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Axl-IA-esu">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -8,7 +8,7 @@
         <!--Timer-->
         <scene sceneID="T1b-sc-M9r">
             <objects>
-                <viewController id="Aay-aK-GO8" customClass="TimerViewController" customModule="iCube2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Aay-aK-GO8" customClass="TimerViewController" customModule="iCube" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vNR-9y-AOY"/>
                         <viewControllerLayoutGuide type="bottom" id="KTN-XO-uoD"/>
@@ -27,7 +27,7 @@
         <!--Statistics-->
         <scene sceneID="pm9-Ij-RvU">
             <objects>
-                <viewController id="eGS-j3-qzg" customClass="StatisticsViewController" customModule="iCube2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="eGS-j3-qzg" customClass="StatisticsViewController" customModule="iCube" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="w7d-l1-RQa"/>
                         <viewControllerLayoutGuide type="bottom" id="AHV-UR-pZ7"/>
@@ -46,7 +46,7 @@
         <!--Settings-->
         <scene sceneID="GcJ-7n-ZnU">
             <objects>
-                <viewController id="TUm-fX-1Ie" customClass="SettingsViewController" customModule="iCube2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="TUm-fX-1Ie" customClass="SettingsViewController" customModule="iCube" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MWW-ZB-AbK"/>
                         <viewControllerLayoutGuide type="bottom" id="9Dt-8Q-zfT"/>
