@@ -16,9 +16,46 @@
                     <view key="view" contentMode="scaleToFill" id="tGG-fO-BaL">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Po1-Zz-eny">
+                                <rect key="frame" x="198" y="147" width="204" height="115"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMb-ce-T3G">
+                                        <rect key="frame" x="30" y="16" width="145" height="84"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="70"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="cMb-ce-T3G" firstAttribute="top" secondItem="Po1-Zz-eny" secondAttribute="top" constant="16" id="Ov2-kD-XGg"/>
+                                    <constraint firstItem="cMb-ce-T3G" firstAttribute="leading" secondItem="Po1-Zz-eny" secondAttribute="leading" constant="30" id="mFV-s6-TKu"/>
+                                    <constraint firstAttribute="height" constant="115" id="x2m-1J-hEB"/>
+                                    <constraint firstAttribute="width" constant="204" id="zLR-DN-L9R"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Scramble" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Lp9-ao-LJz">
+                                <rect key="frame" x="0.0" y="71" width="600" height="98"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Lp9-ao-LJz" firstAttribute="top" secondItem="vNR-9y-AOY" secondAttribute="bottom" constant="51" id="Bax-mB-Sne"/>
+                            <constraint firstItem="Lp9-ao-LJz" firstAttribute="width" secondItem="tGG-fO-BaL" secondAttribute="width" id="Y5e-3l-qw4"/>
+                            <constraint firstItem="Lp9-ao-LJz" firstAttribute="centerX" secondItem="tGG-fO-BaL" secondAttribute="centerX" id="oLV-2E-X2P"/>
+                            <constraint firstItem="Po1-Zz-eny" firstAttribute="centerX" secondItem="tGG-fO-BaL" secondAttribute="centerX" id="rg0-Tk-l4e"/>
+                            <constraint firstItem="Po1-Zz-eny" firstAttribute="top" secondItem="vNR-9y-AOY" secondAttribute="bottom" constant="127" id="wLi-aU-J5x"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Timer" image="Timer" selectedImage="Timer" id="uSo-xD-o1p"/>
+                    <connections>
+                        <outlet property="scrambleLabel" destination="Lp9-ao-LJz" id="uHC-9n-XLS"/>
+                        <outlet property="timerLabel" destination="cMb-ce-T3G" id="OUw-DG-ehO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RgQ-M5-tFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
