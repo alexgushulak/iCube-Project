@@ -21,6 +21,7 @@ class TimerViewController: UIViewController {
         scrambleLabel.numberOfLines = 0
         scrambleLabel.text = toString(generator.generate())
         [scrambleLabel .sizeToFit()]
+        self.tabBarController?.selectedIndex = 1
         }
     
     override func didReceiveMemoryWarning() {
