@@ -38,7 +38,7 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var scrambleLabel: UILabel!
    
     
-    //attempt for a new timer that fucking works now!!!
+    //declaration of variables
     private var displayLink: CADisplayLink?
     private var freezeTimer = NSTimer()
     private var inspectionTimer = NSTimer()
@@ -49,9 +49,11 @@ class TimerViewController: UIViewController {
     private var countDownTime = 15
     private var isCountingDown = false
     
+    //executed when the freeze timer ends
     func changeColor(){
         timerLabel.textColor = UIColor.greenColor()
     }
+    //new timer stuff that I don't understand
     private var startTime: CFAbsoluteTime = 0
     private var lastTime: CFAbsoluteTime = 0
     private var endTime: CFAbsoluteTime = 0 {
@@ -77,6 +79,7 @@ class TimerViewController: UIViewController {
         case .Running: return CFAbsoluteTimeGetCurrent() - startTime
         }
     }
+    //supposed to update the label with the elapsed time but never does the minute stuff
     private func updateLabel() {
         seconds = String(format: "%.02f", elapsedTime)
         if(minutes > 1){
@@ -95,6 +98,7 @@ class TimerViewController: UIViewController {
             updateLabel()
         }
     }
+    //what happens for each time you touch down depending on the current state of the timer
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         createDisplayLinkIfNeeded()
         
@@ -123,6 +127,7 @@ class TimerViewController: UIViewController {
             [scrambleLabel .sizeToFit()]
         }
     }
+    // what happens when you pick your finger up depending on the state of the timer
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if timerLabel.textColor == UIColor.greenColor() {
             if(global.inspectionTime){
@@ -161,6 +166,7 @@ class TimerViewController: UIViewController {
             state = .Pending
         }
     }
+    //shennanigans that I don't understand
     private func createDisplayLinkIfNeeded() {
         guard self.displayLink == nil else { return }
         let displayLink = CADisplayLink(target: self, selector: #selector(TimerViewController.displayLinkDidFire(_:)))
@@ -174,6 +180,7 @@ class TimerViewController: UIViewController {
             minutes += 1
         }
     }
+    //puts an array of strings into one big string valuable for printing the scrambles
     func toString(arrayOne: [String?])->String{
         let len = arrayOne.count
         var ret = ""
@@ -182,6 +189,7 @@ class TimerViewController: UIViewController {
         }
         return ret
     }
+    //fired once per second during the inspection time
     func countDown(){
         countDownTime -= 1
         timerLabel.text = "\(countDownTime)"
