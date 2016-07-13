@@ -101,7 +101,12 @@ class TimerViewController: UIViewController {
         case .Pending:
             if(timerLabel.textColor == UIColor.whiteColor()){
             timerLabel.textColor = UIColor.redColor()
-            countDownTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(changeColor), userInfo: nil, repeats: false)
+                if(global.freezeTime){
+                    countDownTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(changeColor), userInfo: nil, repeats: false)
+                }
+                else{
+                    timerLabel.textColor = UIColor.greenColor()
+                }
             }
         case .Running:
             endTime = CFAbsoluteTimeGetCurrent()

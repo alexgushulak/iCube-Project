@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Axl-IA-esu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Axl-IA-esu">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Timer-->
@@ -95,9 +96,67 @@
                     <view key="view" contentMode="scaleToFill" id="goh-23-tOp">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EXI-Ba-7GL">
+                                <rect key="frame" x="0.0" y="79" width="600" height="54"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Inspection Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8J3-bp-WdR">
+                                        <rect key="frame" x="8" y="0.0" width="226" height="54"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ndr-6L-oy6">
+                                        <rect key="frame" x="543" y="11" width="51" height="31"/>
+                                    </switch>
+                                </subviews>
+                                <color key="backgroundColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Ndr-6L-oy6" secondAttribute="trailing" constant="8" id="8dE-Se-O0A"/>
+                                    <constraint firstItem="Ndr-6L-oy6" firstAttribute="centerY" secondItem="EXI-Ba-7GL" secondAttribute="centerY" id="OtL-35-SWg"/>
+                                    <constraint firstItem="8J3-bp-WdR" firstAttribute="leading" secondItem="EXI-Ba-7GL" secondAttribute="leading" constant="8" id="f4w-jL-X1p"/>
+                                    <constraint firstItem="8J3-bp-WdR" firstAttribute="centerY" secondItem="EXI-Ba-7GL" secondAttribute="centerY" id="oUo-0w-roh"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="chq-3B-u4I">
+                                <rect key="frame" x="0.0" y="149" width="600" height="54"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Freeze Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMY-5I-ryr">
+                                        <rect key="frame" x="8" y="0.0" width="228" height="54"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6xp-Ll-0ct">
+                                        <rect key="frame" x="543" y="11" width="51" height="31"/>
+                                    </switch>
+                                </subviews>
+                                <color key="backgroundColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="OMY-5I-ryr" firstAttribute="centerY" secondItem="chq-3B-u4I" secondAttribute="centerY" id="06h-Ra-NDa"/>
+                                    <constraint firstAttribute="trailing" secondItem="6xp-Ll-0ct" secondAttribute="trailing" constant="8" id="sNu-Vb-mte"/>
+                                    <constraint firstItem="OMY-5I-ryr" firstAttribute="leading" secondItem="chq-3B-u4I" secondAttribute="leading" constant="8" id="xb8-cf-o93"/>
+                                    <constraint firstItem="6xp-Ll-0ct" firstAttribute="centerY" secondItem="chq-3B-u4I" secondAttribute="centerY" id="zw7-IJ-Y1P"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="EXI-Ba-7GL" firstAttribute="leading" secondItem="goh-23-tOp" secondAttribute="leadingMargin" constant="-20" id="9Op-b7-bQp"/>
+                            <constraint firstItem="chq-3B-u4I" firstAttribute="top" secondItem="MWW-ZB-AbK" secondAttribute="bottom" constant="85" id="GHE-hu-b5C"/>
+                            <constraint firstItem="EXI-Ba-7GL" firstAttribute="centerX" secondItem="goh-23-tOp" secondAttribute="centerX" id="TgP-5e-hhr"/>
+                            <constraint firstItem="EXI-Ba-7GL" firstAttribute="top" secondItem="MWW-ZB-AbK" secondAttribute="bottom" constant="15" id="Ubr-iU-9eU"/>
+                            <constraint firstItem="EXI-Ba-7GL" firstAttribute="width" secondItem="chq-3B-u4I" secondAttribute="width" id="a9i-dC-APW"/>
+                            <constraint firstItem="chq-3B-u4I" firstAttribute="top" secondItem="EXI-Ba-7GL" secondAttribute="bottom" constant="16" id="cmC-gd-vOv"/>
+                            <constraint firstItem="chq-3B-u4I" firstAttribute="centerX" secondItem="goh-23-tOp" secondAttribute="centerX" id="k2p-he-mo3"/>
+                            <constraint firstItem="chq-3B-u4I" firstAttribute="height" secondItem="EXI-Ba-7GL" secondAttribute="height" id="uiA-yk-Rxa"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="lxy-hA-Lb6"/>
+                    <connections>
+                        <outlet property="freezeTimeSwitch" destination="6xp-Ll-0ct" id="jcK-AL-PxD"/>
+                        <outlet property="inspectionTimeSwitch" destination="Ndr-6L-oy6" id="4FA-kF-p7c"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbj-Te-ksq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
