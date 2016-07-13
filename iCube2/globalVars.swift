@@ -7,7 +7,7 @@
 //
 
 import Foundation
-//vars that can be used globally
+//vars that can be used globally.
 struct globalVars {
     static var freezeTime = true
     static var inspectionTime = false
