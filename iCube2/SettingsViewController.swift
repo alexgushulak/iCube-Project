@@ -21,5 +21,17 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBOutlet weak var freezeTimeSwitch: UISwitch!
+    
+    @IBOutlet weak var inspectionTimeSwitch: UISwitch!
+    
+    struct globals {
+        var freezeTime = true
+        static var inspectionTime = false
+    }
+    if(globals.freezeTime){
+    
+    }
+    
     
 }
