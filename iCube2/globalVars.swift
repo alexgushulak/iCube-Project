@@ -9,6 +9,6 @@
 import Foundation
 
 struct global{
-    static var inspectionTime = false
+    static var inspectionTime = true
     static var freezeTime = true
 }

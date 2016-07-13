@@ -40,11 +40,14 @@ class TimerViewController: UIViewController {
     
     //attempt for a new timer that fucking works now!!!
     private var displayLink: CADisplayLink?
-    private var countDownTimer = NSTimer()
+    private var freezeTimer = NSTimer()
+    private var inspectionTimer = NSTimer()
     private var minutes = 0.0
     private var seconds = "0.0"
     private var cubeSize = 3
     private var generator = scrambleGenerator(num: 3)
+    private var countDownTime = 15
+    private var isCountingDown = false
     
     func changeColor(){
         timerLabel.textColor = UIColor.greenColor()
@@ -99,10 +102,13 @@ class TimerViewController: UIViewController {
         case .Stopped:
             state = .Pending
         case .Pending:
+            if(isCountingDown){
+                    timerLabel.textColor = UIColor.greenColor()
+            }
             if(timerLabel.textColor == UIColor.whiteColor()){
-            timerLabel.textColor = UIColor.redColor()
+                timerLabel.textColor = UIColor.redColor()
                 if(global.freezeTime){
-                    countDownTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(changeColor), userInfo: nil, repeats: false)
+                    freezeTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(changeColor), userInfo: nil, repeats: false)
                 }
                 else{
                     timerLabel.textColor = UIColor.greenColor()
@@ -119,15 +125,34 @@ class TimerViewController: UIViewController {
     }
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if timerLabel.textColor == UIColor.greenColor() {
-            startTime = CFAbsoluteTimeGetCurrent()
-            displayLink?.paused = false
-            state = .Running
-            timerLabel.textColor = UIColor.whiteColor()
+            if(global.inspectionTime){
+                if(!isCountingDown){
+                    isCountingDown = true
+                    inspectionTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector:   #selector(countDown), userInfo: nil, repeats: true)
+                    timerLabel.textColor = UIColor.whiteColor()
+                    timerLabel.text = "\(countDownTime)"
+                }
+                else {
+                    inspectionTimer.invalidate()
+                    isCountingDown = false
+                    startTime = CFAbsoluteTimeGetCurrent()
+                    displayLink?.paused = false
+                    state = .Running
+                    timerLabel.textColor = UIColor.whiteColor()
+                    countDownTime = 15
+                }
+            }
+            else{
+                startTime = CFAbsoluteTimeGetCurrent()
+                displayLink?.paused = false
+                state = .Running
+                timerLabel.textColor = UIColor.whiteColor()
+            }
         }
         if timerLabel.textColor == UIColor.redColor(){
             state = .Stopped
             timerLabel.textColor = UIColor.whiteColor()
-            countDownTimer.invalidate()
+            freezeTimer.invalidate()
             startTime = CFAbsoluteTimeGetCurrent()
             endTime = CFAbsoluteTimeGetCurrent()
 
@@ -156,5 +181,19 @@ class TimerViewController: UIViewController {
             ret = "\(ret)\(arrayOne[index]!)"
         }
         return ret
+    }
+    func countDown(){
+        countDownTime -= 1
+        timerLabel.text = "\(countDownTime)"
+        if(countDownTime == 0){
+            startTime = CFAbsoluteTimeGetCurrent()
+            displayLink?.paused = false
+            state = .Running
+            inspectionTimer.invalidate()
+            //maybe insert a ding or something here to signify the time starting
+            countDownTime = 15
+            isCountingDown = false
+
+        }
     }
 }
