@@ -2,17 +2,15 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "DangleDev.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "DangleDev-1.png",
+      "filename" : "Cube.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "DangleDev-2.png",
       "scale" : "3x"
     }
   ],
