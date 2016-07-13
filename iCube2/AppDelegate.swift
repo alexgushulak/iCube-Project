@@ -18,7 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         // makes sure the phone wont go to sleep while the app is running cause no one wants to be mid solve and have their phone go to sleep
         UIApplication.sharedApplication().idleTimerDisabled = true
-       
+        // Holy Fucking Shit, opens to the middle page
+        let tabBar: UITabBarController = self.window?.rootViewController as! UITabBarController
+        tabBar.selectedIndex = 1
         return true
     }
 
@@ -45,6 +47,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
 }
-
-
 
