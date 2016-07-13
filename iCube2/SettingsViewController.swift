@@ -14,6 +14,8 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.blackColor()
         // Do any additional setup after loading the view, typically from a nib.
+         freezeTimeSwitch.addTarget(self, action: #selector(SettingsViewController.freezeSwitchIsChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        inspectionTimeSwitch.addTarget(self, action: #selector(SettingsViewController.inspectionSwitchIsChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
     }
     
     override func didReceiveMemoryWarning() {
@@ -25,13 +27,19 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var inspectionTimeSwitch: UISwitch!
     
-    struct globals {
-        var freezeTime = true
-        static var inspectionTime = false
+    func inspectionSwitchIsChanged(mySwitch: UISwitch) {
+        if mySwitch.on {
+            globalVars.inspectionTime = true
+        } else {
+            globalVars.inspectionTime = false
+        }
     }
-    if(globals.freezeTime){
     
+    func freezeSwitchIsChanged(mySwitch: UISwitch) {
+        if mySwitch.on {
+            globalVars.freezeTime = true
+        } else {
+            globalVars.freezeTime = false
+        }
     }
-    
-    
 }

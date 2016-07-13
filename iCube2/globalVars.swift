@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct global {
+struct globalVars {
     static var freezeTime = true
     static var inspectionTime = false
 }

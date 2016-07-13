@@ -150,7 +150,9 @@
                     <navigationItem key="navigationItem" title="Settings" id="lxy-hA-Lb6"/>
                     <connections>
                         <outlet property="freezeTime" destination="nHT-OZ-NqX" id="kEu-3o-rgL"/>
+                        <outlet property="freezeTimeSwitch" destination="nHT-OZ-NqX" id="Ar6-WL-OKq"/>
                         <outlet property="inspectionTime" destination="avj-B1-PLZ" id="1zd-fg-9ZY"/>
+                        <outlet property="inspectionTimeSwitch" destination="avj-B1-PLZ" id="TD9-sd-Ycc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbj-Te-ksq" userLabel="First Responder" sceneMemberID="firstResponder"/>
