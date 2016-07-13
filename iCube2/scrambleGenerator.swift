@@ -32,7 +32,7 @@ class scrambleGenerator {
         }
 
     }
-    
+    //fasldkjf
     //function to pass back a string of moves for a scramble
     func generate() -> [String?] {
         var scramble = [String?](count:len, repeatedValue: nil)
