@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FAB1A0C21D2DBBFF005ED89E"
-               BuildableName = "iCube2.app"
+               BuildableName = "iCube.app"
                BlueprintName = "iCube2"
                ReferencedContainer = "container:iCube2.xcodeproj">
             </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FAB1A0C21D2DBBFF005ED89E"
-            BuildableName = "iCube2.app"
+            BuildableName = "iCube.app"
             BlueprintName = "iCube2"
             ReferencedContainer = "container:iCube2.xcodeproj">
          </BuildableReference>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FAB1A0C21D2DBBFF005ED89E"
-            BuildableName = "iCube2.app"
+            BuildableName = "iCube.app"
             BlueprintName = "iCube2"
             ReferencedContainer = "container:iCube2.xcodeproj">
          </BuildableReference>
@@ -95,7 +95,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FAB1A0C21D2DBBFF005ED89E"
-            BuildableName = "iCube2.app"
+            BuildableName = "iCube.app"
             BlueprintName = "iCube2"
             ReferencedContainer = "container:iCube2.xcodeproj">
          </BuildableReference>
