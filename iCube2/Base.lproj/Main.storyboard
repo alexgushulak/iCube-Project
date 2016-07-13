@@ -95,9 +95,67 @@
                     <view key="view" contentMode="scaleToFill" id="goh-23-tOp">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPJ-Nz-51E">
+                                <rect key="frame" x="0.0" y="150" width="600" height="52"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Freeze Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ilk-1z-5Za">
+                                        <rect key="frame" x="8" y="0.0" width="215" height="52"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nHT-OZ-NqX">
+                                        <rect key="frame" x="543" y="10" width="51" height="31"/>
+                                    </switch>
+                                </subviews>
+                                <color key="backgroundColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Ilk-1z-5Za" firstAttribute="centerY" secondItem="lPJ-Nz-51E" secondAttribute="centerY" id="8h0-3y-Rsg"/>
+                                    <constraint firstAttribute="trailing" secondItem="nHT-OZ-NqX" secondAttribute="trailing" constant="8" id="Xlu-hb-Lew"/>
+                                    <constraint firstItem="nHT-OZ-NqX" firstAttribute="centerY" secondItem="lPJ-Nz-51E" secondAttribute="centerY" id="a7S-aM-Lr1"/>
+                                    <constraint firstItem="Ilk-1z-5Za" firstAttribute="leading" secondItem="lPJ-Nz-51E" secondAttribute="leading" constant="8" id="tcq-PM-QVh"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f13-Up-Rov">
+                                <rect key="frame" x="0.0" y="90" width="600" height="52"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Inspection Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSZ-pX-RY7">
+                                        <rect key="frame" x="8" y="8" width="216" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="avj-B1-PLZ">
+                                        <rect key="frame" x="543" y="10" width="51" height="31"/>
+                                    </switch>
+                                </subviews>
+                                <color key="backgroundColor" red="0.45230693717277481" green="0.45230693717277481" blue="0.45230693717277481" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="BSZ-pX-RY7" firstAttribute="leading" secondItem="f13-Up-Rov" secondAttribute="leading" constant="8" id="J9q-L0-RNN"/>
+                                    <constraint firstAttribute="trailing" secondItem="avj-B1-PLZ" secondAttribute="trailing" constant="8" id="T8o-zK-Xji"/>
+                                    <constraint firstItem="avj-B1-PLZ" firstAttribute="centerY" secondItem="f13-Up-Rov" secondAttribute="centerY" id="ddR-6K-FSP"/>
+                                    <constraint firstItem="BSZ-pX-RY7" firstAttribute="centerY" secondItem="f13-Up-Rov" secondAttribute="centerY" id="y2u-bZ-wV5"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="lPJ-Nz-51E" firstAttribute="centerX" secondItem="goh-23-tOp" secondAttribute="centerX" id="4ld-TS-tfX"/>
+                            <constraint firstItem="f13-Up-Rov" firstAttribute="width" secondItem="goh-23-tOp" secondAttribute="width" id="EKu-CS-TLQ"/>
+                            <constraint firstItem="f13-Up-Rov" firstAttribute="height" secondItem="lPJ-Nz-51E" secondAttribute="height" id="LED-R8-4j2"/>
+                            <constraint firstItem="lPJ-Nz-51E" firstAttribute="top" secondItem="f13-Up-Rov" secondAttribute="bottom" constant="8" id="Vio-cv-Dq4"/>
+                            <constraint firstItem="lPJ-Nz-51E" firstAttribute="width" secondItem="goh-23-tOp" secondAttribute="width" id="okM-HJ-1SH"/>
+                            <constraint firstItem="f13-Up-Rov" firstAttribute="centerX" secondItem="goh-23-tOp" secondAttribute="centerX" id="tdo-hi-o87"/>
+                            <constraint firstItem="lPJ-Nz-51E" firstAttribute="top" secondItem="MWW-ZB-AbK" secondAttribute="bottom" constant="86" id="ttw-7N-SL5"/>
+                            <constraint firstItem="f13-Up-Rov" firstAttribute="top" secondItem="MWW-ZB-AbK" secondAttribute="bottom" constant="26" id="yXO-Q5-VDY"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="lxy-hA-Lb6"/>
+                    <connections>
+                        <outlet property="freezeTimeSwitch" destination="nHT-OZ-NqX" id="Ar6-WL-OKq"/>
+                        <outlet property="inspectionTimeSwitch" destination="avj-B1-PLZ" id="b15-mp-91v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbj-Te-ksq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
