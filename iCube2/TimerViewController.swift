@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class TimerViewController: UIViewController {
     
@@ -42,7 +43,8 @@ class TimerViewController: UIViewController {
     private var displayLink: CADisplayLink?
     private var freezeTimer = NSTimer()
     private var inspectionTimer = NSTimer()
-    private var minutes = 0.0
+    private var minuteTimer = NSTimer()
+    private var minutes = 0
     private var seconds = "0.0"
     private var cubeSize = 3
     private var generator = scrambleGenerator(num: 3)
@@ -53,9 +55,9 @@ class TimerViewController: UIViewController {
     func changeColor(){
         timerLabel.textColor = UIColor.greenColor()
     }
-    //new timer stuff that I don't understand
+    //new timer stuff that I kinda understand
     private var startTime: CFAbsoluteTime = 0
-    private var lastTime: CFAbsoluteTime = 0
+    private var lastTime = Time(minutes: 0, sec: 0.00)
     private var endTime: CFAbsoluteTime = 0 {
         didSet {
             updateLabel()
@@ -75,23 +77,30 @@ class TimerViewController: UIViewController {
     }
     private var elapsedTime: NSTimeInterval {
         switch state {
-        case .Stopped, .Pending: return lastTime
+        case .Stopped, .Pending: return endTime - startTime
         case .Running: return CFAbsoluteTimeGetCurrent() - startTime
         }
     }
     //supposed to update the label with the elapsed time but never does the minute stuff
     private func updateLabel() {
-        seconds = String(format: "%.02f", elapsedTime)
-        if(minutes > 1){
-            seconds = String(format: "%.02f", (60.0 * minutes - elapsedTime))
+        switch state {
+        case .Stopped, .Pending:
+            timerLabel.text = lastTime.toString()
+        case .Running:
+            seconds = String(format: "%.02f", elapsedTime)
+            if(minutes == 0){
+                timerLabel.text = "\(seconds)"
+            }
+            else{
+                seconds = String(format: "%0.02f", elapsedTime - 60.0 * (Double)(minutes))
+                if(elapsedTime - 60.0 * (Double)(minutes) < 10){
+                    timerLabel.text = "\(minutes):0\(seconds)"
+                }
+                else {
+                    timerLabel.text = "\(minutes):\(seconds)"
+                }
+            }
         }
-        if(minutes == 0){
-            timerLabel.text = "\(seconds)"
-        }
-        else {
-            timerLabel.text = "\(minutes):\(seconds)"
-        }
-
     }
     private var state = State.Stopped {
         didSet {
@@ -120,11 +129,14 @@ class TimerViewController: UIViewController {
             }
         case .Running:
             endTime = CFAbsoluteTimeGetCurrent()
-            lastTime = endTime - startTime
             state = .Stopped
             displayLink?.paused = true
             scrambleLabel.text = toString(generator.generate())
             [scrambleLabel .sizeToFit()]
+            minutes = 0
+            minuteTimer.invalidate()
+            lastTime = Time(minutes: minutes, sec: (Double)(elapsedTime))
+            timerLabel.text = lastTime.toString()
         }
     }
     // what happens when you pick your finger up depending on the state of the timer
@@ -145,6 +157,7 @@ class TimerViewController: UIViewController {
                     state = .Running
                     timerLabel.textColor = UIColor.whiteColor()
                     countDownTime = 15
+                    minuteTimer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(updateMinutes), userInfo: nil, repeats: true)
                 }
             }
             else{
@@ -152,9 +165,10 @@ class TimerViewController: UIViewController {
                 displayLink?.paused = false
                 state = .Running
                 timerLabel.textColor = UIColor.whiteColor()
+                minuteTimer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(updateMinutes), userInfo: nil, repeats: true)
             }
         }
-        if timerLabel.textColor == UIColor.redColor(){
+        else if timerLabel.textColor == UIColor.redColor(){
             state = .Stopped
             timerLabel.textColor = UIColor.whiteColor()
             freezeTimer.invalidate()
@@ -166,6 +180,11 @@ class TimerViewController: UIViewController {
             state = .Pending
         }
     }
+    
+    func updateMinutes(){
+        minutes += 1
+    
+    }
     //shennanigans that I don't understand
     private func createDisplayLinkIfNeeded() {
         guard self.displayLink == nil else { return }
@@ -176,9 +195,6 @@ class TimerViewController: UIViewController {
     }
     func displayLinkDidFire(_: CADisplayLink) {
         updateLabel()
-        if(elapsedTime == 60.00){
-            minutes += 1
-        }
     }
     //puts an array of strings into one big string valuable for printing the scrambles
     func toString(arrayOne: [String?])->String{
