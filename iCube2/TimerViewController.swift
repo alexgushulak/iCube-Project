@@ -15,7 +15,7 @@ class TimerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.blackColor()
-        // Do any additional setup after loading the view, typically from a nib.
+        // sets up the view and puts out the first scramble
         timerLabel.textColor = UIColor.whiteColor()
         state = .Pending
         generator = scrambleGenerator(num: 3)
@@ -24,6 +24,12 @@ class TimerViewController: UIViewController {
         scrambleLabel.text = toString(generator.generate())
         [scrambleLabel .sizeToFit()]
         self.tabBarController?.selectedIndex = 1
+        //sets up the audio player with the chime sound
+        do{
+            try audioPlayer = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("chime", ofType: "mp3")!) )
+        } catch {
+            NSLog("Error: There's an error with the audio file chime.mp3")
+        }
         }
     
     override func didReceiveMemoryWarning() {
@@ -45,6 +51,7 @@ class TimerViewController: UIViewController {
     private var freezeTimer = NSTimer()
     private var inspectionTimer = NSTimer()
     private var minuteTimer = NSTimer()
+    private var audioPlayer = AVAudioPlayer()
     private var minutes = 0
     private var seconds = "0.0"
     private var cubeSize = 3
@@ -59,10 +66,12 @@ class TimerViewController: UIViewController {
             destViewController.averageTime.text = average(global.solves3).toString()
         }
     }
+    
     //executed when the freeze timer ends
     func changeColor(){
         timerLabel.textColor = UIColor.greenColor()
     }
+    
     //new timer stuff that I kinda understand
     private var startTime: CFAbsoluteTime = 0
     private var lastTime = Time(minutes: 0, sec: 0.00)
@@ -89,6 +98,7 @@ class TimerViewController: UIViewController {
         case .Running: return CFAbsoluteTimeGetCurrent() - startTime
         }
     }
+    
     //supposed to update the label with the elapsed time but never does the minute stuff
     private func updateLabel() {
         switch state {
@@ -115,6 +125,7 @@ class TimerViewController: UIViewController {
             updateLabel()
         }
     }
+    
     //what happens for each time you touch down depending on the current state of the timer
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         createDisplayLinkIfNeeded()
@@ -146,9 +157,10 @@ class TimerViewController: UIViewController {
             lastTime = Time(minutes: minutes, sec: (Double)(elapsedTime))
             global.solves3.append(lastTime)
             timerLabel.text = lastTime.toString()
-            performSegueWithIdentifier(segID, sender: self)
+            //performSegueWithIdentifier(segID, sender: self)
         }
     }
+    
     // what happens when you pick your finger up depending on the state of the timer
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if timerLabel.textColor == UIColor.greenColor() {
@@ -168,6 +180,7 @@ class TimerViewController: UIViewController {
                     timerLabel.textColor = UIColor.whiteColor()
                     countDownTime = 15
                     minuteTimer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(updateMinutes), userInfo: nil, repeats: true)
+                    audioPlayer.play()
                 }
             }
             else{
@@ -176,6 +189,7 @@ class TimerViewController: UIViewController {
                 state = .Running
                 timerLabel.textColor = UIColor.whiteColor()
                 minuteTimer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(updateMinutes), userInfo: nil, repeats: true)
+                audioPlayer.play()
             }
         }
         else if timerLabel.textColor == UIColor.redColor(){
@@ -195,6 +209,7 @@ class TimerViewController: UIViewController {
         minutes += 1
     
     }
+    
     //shennanigans that I don't understand
     private func createDisplayLinkIfNeeded() {
         guard self.displayLink == nil else { return }
@@ -203,9 +218,11 @@ class TimerViewController: UIViewController {
         displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
         self.displayLink = displayLink
     }
+    
     func displayLinkDidFire(_: CADisplayLink) {
         updateLabel()
     }
+    
     //puts an array of strings into one big string valuable for printing the scrambles
     func toString(arrayOne: [String?])->String{
         let len = arrayOne.count
@@ -215,6 +232,7 @@ class TimerViewController: UIViewController {
         }
         return ret
     }
+    
     //fired once per second during the inspection time
     func countDown(){
         countDownTime -= 1
@@ -225,9 +243,9 @@ class TimerViewController: UIViewController {
             state = .Running
             inspectionTimer.invalidate()
             //maybe insert a ding or something here to signify the time starting
+            audioPlayer.play()
             countDownTime = 15
             isCountingDown = false
-
         }
     }
 }
