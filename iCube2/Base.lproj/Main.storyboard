@@ -100,8 +100,11 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EXI-Ba-7GL">
                                 <rect key="frame" x="0.0" y="105" width="600" height="54"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Inspection Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8J3-bp-WdR">
-                                        <rect key="frame" x="8" y="0.0" width="226" height="54"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inspection Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8J3-bp-WdR">
+                                        <rect key="frame" x="8" y="0.0" width="129" height="54"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="129" id="jki-S6-7nJ"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -113,32 +116,36 @@
                                 <color key="backgroundColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Ndr-6L-oy6" secondAttribute="trailing" constant="8" id="8dE-Se-O0A"/>
+                                    <constraint firstAttribute="height" constant="54" id="Bga-dg-x4K"/>
+                                    <constraint firstItem="8J3-bp-WdR" firstAttribute="centerY" secondItem="EXI-Ba-7GL" secondAttribute="centerY" id="OAh-IH-RZg"/>
                                     <constraint firstItem="Ndr-6L-oy6" firstAttribute="centerY" secondItem="EXI-Ba-7GL" secondAttribute="centerY" id="OtL-35-SWg"/>
-                                    <constraint firstAttribute="height" constant="54" id="agg-I2-rt4"/>
-                                    <constraint firstItem="8J3-bp-WdR" firstAttribute="leading" secondItem="EXI-Ba-7GL" secondAttribute="leading" constant="8" id="f4w-jL-X1p"/>
-                                    <constraint firstItem="8J3-bp-WdR" firstAttribute="centerY" secondItem="EXI-Ba-7GL" secondAttribute="centerY" id="oUo-0w-roh"/>
-                                    <constraint firstAttribute="width" constant="600" id="zIl-vy-rgx"/>
+                                    <constraint firstItem="8J3-bp-WdR" firstAttribute="leading" secondItem="EXI-Ba-7GL" secondAttribute="leading" constant="8" id="aXP-93-Ymv"/>
+                                    <constraint firstItem="8J3-bp-WdR" firstAttribute="height" secondItem="EXI-Ba-7GL" secondAttribute="height" id="ve7-d4-P4E"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="chq-3B-u4I">
                                 <rect key="frame" x="0.0" y="162" width="600" height="54"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Freeze Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMY-5I-ryr">
-                                        <rect key="frame" x="8" y="0.0" width="228" height="54"/>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6xp-Ll-0ct">
+                                        <rect key="frame" x="543" y="11" width="51" height="31"/>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Freeze Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMY-5I-ryr">
+                                        <rect key="frame" x="8" y="0.0" width="132" height="54"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="132" id="7IC-Qa-V4k"/>
+                                            <constraint firstAttribute="height" constant="54" id="NqY-eb-LuC"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6xp-Ll-0ct">
-                                        <rect key="frame" x="543" y="11" width="51" height="31"/>
-                                    </switch>
                                 </subviews>
                                 <color key="backgroundColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="OMY-5I-ryr" firstAttribute="centerY" secondItem="chq-3B-u4I" secondAttribute="centerY" id="06h-Ra-NDa"/>
-                                    <constraint firstAttribute="height" constant="54" id="Ife-tP-Ar1"/>
+                                    <constraint firstItem="OMY-5I-ryr" firstAttribute="leading" secondItem="chq-3B-u4I" secondAttribute="leading" constant="8" id="6UF-Bh-ETy"/>
+                                    <constraint firstItem="OMY-5I-ryr" firstAttribute="height" secondItem="chq-3B-u4I" secondAttribute="height" id="SWf-WO-AwE"/>
+                                    <constraint firstItem="OMY-5I-ryr" firstAttribute="centerY" secondItem="chq-3B-u4I" secondAttribute="centerY" id="kfm-Ez-m3O"/>
                                     <constraint firstAttribute="trailing" secondItem="6xp-Ll-0ct" secondAttribute="trailing" constant="8" id="sNu-Vb-mte"/>
-                                    <constraint firstItem="OMY-5I-ryr" firstAttribute="leading" secondItem="chq-3B-u4I" secondAttribute="leading" constant="8" id="xb8-cf-o93"/>
                                     <constraint firstItem="6xp-Ll-0ct" firstAttribute="centerY" secondItem="chq-3B-u4I" secondAttribute="centerY" id="zw7-IJ-Y1P"/>
                                 </constraints>
                             </view>
