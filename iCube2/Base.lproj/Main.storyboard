@@ -64,7 +64,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RgQ-M5-tFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-404" y="614"/>
+            <point key="canvasLocation" x="-404" y="555"/>
         </scene>
         <!--Statistics-->
         <scene sceneID="pm9-Ij-RvU">
@@ -77,9 +77,32 @@
                     <view key="view" contentMode="scaleToFill" id="Yh6-Dn-aur">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="AVERAGE TIME:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qxu-Ri-e8y">
+                                <rect key="frame" x="33" y="147" width="241" height="91"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPe-ec-tVc">
+                                <rect key="frame" x="282" y="147" width="162" height="91"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="QPe-ec-tVc" firstAttribute="leading" secondItem="Qxu-Ri-e8y" secondAttribute="trailing" constant="8" id="AmV-4L-Oq2"/>
+                            <constraint firstItem="Qxu-Ri-e8y" firstAttribute="leading" secondItem="Yh6-Dn-aur" secondAttribute="leadingMargin" constant="13" id="YJC-rs-qr0"/>
+                            <constraint firstItem="QPe-ec-tVc" firstAttribute="top" secondItem="w7d-l1-RQa" secondAttribute="bottom" constant="83" id="meW-06-pfX"/>
+                            <constraint firstItem="Qxu-Ri-e8y" firstAttribute="top" secondItem="w7d-l1-RQa" secondAttribute="bottom" constant="83" id="uN9-ly-VFz"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Statistics" id="n1q-Um-LjU"/>
+                    <connections>
+                        <outlet property="averageTime" destination="QPe-ec-tVc" id="z6q-Is-O51"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ECL-QK-oLI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -160,7 +183,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbj-Te-ksq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-409" y="-176"/>
+            <point key="canvasLocation" x="-404" y="-138"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="FQj-Mp-OqW">

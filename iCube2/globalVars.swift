@@ -11,6 +11,26 @@ import Foundation
 struct global{
     static var inspectionTime = true
     static var freezeTime = true
+    static var solves2: [Time] = []
+    static var solves3: [Time] = []
+    static var solves4: [Time] = []
+    static var solves5: [Time] = []
+    static var solves6: [Time] = []
+    static var solves7: [Time] = []
+}
+
+func average(times: [Time])-> Time {
+    var secondsTotal = 0.0
+    var minutesTotal = 0
+    for index in 0...(times.capacity-1){
+        secondsTotal += times[index].getSec()
+        minutesTotal += times[index].getMins()
+    }
+    let minutesAve = (Double)(minutesTotal) / (Double)(times.capacity)
+    var secondsAve = secondsTotal / (Double)(times.capacity)
+    let minutesRemainder = minutesAve % 1
+    secondsAve += (minutesRemainder * 60)
+    return Time(minutes: Int(minutesAve), sec: secondsAve)
 }
 
 class Time {
@@ -29,5 +49,11 @@ class Time {
         else {
             return "\(mins):\(sec)"
         }
+    }
+    func getMins()->Int{
+        return mins
+    }
+    func getSec()->Double{
+        return seconds
     }
 }

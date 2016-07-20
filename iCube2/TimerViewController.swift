@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 
+
 class TimerViewController: UIViewController {
     
     override func viewDidLoad() {
@@ -50,7 +51,14 @@ class TimerViewController: UIViewController {
     private var generator = scrambleGenerator(num: 3)
     private var countDownTime = 15
     private var isCountingDown = false
+    private var segID = "mySegueID"
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == segID){
+            let destViewController : StatisticsViewController = segue.destinationViewController as! StatisticsViewController
+            destViewController.averageTime.text = average(global.solves3).toString()
+        }
+    }
     //executed when the freeze timer ends
     func changeColor(){
         timerLabel.textColor = UIColor.greenColor()
@@ -136,7 +144,9 @@ class TimerViewController: UIViewController {
             minutes = 0
             minuteTimer.invalidate()
             lastTime = Time(minutes: minutes, sec: (Double)(elapsedTime))
+            global.solves3.append(lastTime)
             timerLabel.text = lastTime.toString()
+            performSegueWithIdentifier(segID, sender: self)
         }
     }
     // what happens when you pick your finger up depending on the state of the timer
