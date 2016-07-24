@@ -18,11 +18,15 @@ struct global{
     static var solves5: [Time] = []
     static var solves6: [Time] = []
     static var solves7: [Time] = []
+    static var currentSolves: [Time] = []
 }
 
 func average(times: [Time])-> Time {
     var secondsTotal = 0.0
     var minutesTotal = 0
+    if(times.count == 0){
+        return Time(minutes: 0, sec: 0.0)
+    }
     if(times.count == 1){
         return times[0]
     }
@@ -56,6 +60,7 @@ func addTime(time: Time){
     if(global.currentCube == "7x7"){
         global.solves7.append(time)
     }
+    global.currentSolves.append(time)
 }
 
 class Time {
@@ -69,7 +74,7 @@ class Time {
     func toString()->String{
         let sec = String(format: "%0.02f", seconds)
         if(mins == 0){
-            return "\(sec)"
+            return sec
         }
         else {
             return "\(mins):\(sec)"

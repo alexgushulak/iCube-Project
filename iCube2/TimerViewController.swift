@@ -75,24 +75,31 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         self.title = cubeNames[row]
         if(self.title == "2x2"){
             generator = scrambleGenerator(num: 2)
+            global.currentSolves = global.solves2
         }
         if(self.title == "3x3"){
             generator = scrambleGenerator(num: 3)
+            global.currentSolves = global.solves3
         }
         if(self.title == "4x4"){
             generator = scrambleGenerator(num: 4)
+            global.currentSolves = global.solves4
         }
         if(self.title == "5x5"){
             generator = scrambleGenerator(num: 5)
+            global.currentSolves = global.solves5
         }
         if(self.title == "6x6"){
             generator = scrambleGenerator(num: 6)
+            global.currentSolves = global.solves6
         }
         if(self.title == "7x7"){
             generator = scrambleGenerator(num: 7)
+            global.currentSolves = global.solves7
         }
         scrambleLabel.text = toString(generator.generate())
         global.currentCube = self.title!
+        NSNotificationCenter.defaultCenter().postNotificationName("refresh", object: nil, userInfo: nil)
     }
     
     
@@ -221,7 +228,7 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
             minuteTimer.invalidate()
             lastTime = Time(minutes: minutes, sec: (Double)(elapsedTime) - ((Double)(minutes) * 60.0))
             addTime(lastTime)
-            //StatisticsViewController().updateAverage()
+            NSNotificationCenter.defaultCenter().postNotificationName("refresh", object: nil, userInfo: nil)
         }
     }
     
