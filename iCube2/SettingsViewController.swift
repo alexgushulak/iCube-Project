@@ -17,7 +17,7 @@ class SettingsViewController: UIViewController {
         freezeTimeSwitch.addTarget(self, action: #selector(SettingsViewController.freezeSwitchIsChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         inspectionTimeSwitch.addTarget(self, action: #selector(SettingsViewController.inspectionSwitchIsChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         inspectionTimeSwitch.setOn(false, animated: false)
-        // Dynamically Integrated Off Swith Setting Recommended
+        // Dyynamically Integrated Off Swith Setting Recommended
         
     }
     
