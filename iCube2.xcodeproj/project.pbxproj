@@ -226,7 +226,7 @@
 				TargetAttributes = {
 					FAB1A0C21D2DBBFF005ED89E = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = J45VL7CX88;
+						DevelopmentTeam = 2W98QC574T;
 					};
 					FAB1A0D61D2DBBFF005ED89E = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -436,7 +436,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iCube2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dangledev.gushulak.iCube1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dangledev.gushulak.iCube1.1;
 				PRODUCT_NAME = iCube;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -452,7 +452,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iCube2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dangledev.gushulak.iCube1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dangledev.gushulak.iCube1.1;
 				PRODUCT_NAME = iCube;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

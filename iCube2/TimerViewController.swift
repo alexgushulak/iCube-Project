@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 
-class TimerViewController: UIViewController {
+class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +37,51 @@ class TimerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // Makes the Status Bar White
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
+    
+    // View Picker for the Cube Picker
+    let cubeNames = ["2x2", "3x3", "4x4", "5x5", "6x6", "7x7", "Megaminx", "Skewb", "Square-1", "Pyraminx"]
+    
+    @IBOutlet weak var cubePicker: UIPickerView!
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return cubeNames.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return cubeNames[row]
+    }
+   
+    @IBAction func OnOffButton(sender: AnyObject) {
+        if cubePicker.hidden == true {
+            cubePicker.hidden = false
+        }
+        else {
+            cubePicker.hidden = true
+        }
+        
+    }
+    
+    // Changes the Title to the Delected Row
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.title = cubeNames[row]
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
       
     @IBOutlet weak var timerLabel: UILabel!
     
