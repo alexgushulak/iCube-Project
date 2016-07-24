@@ -7,14 +7,17 @@
 //
 
 import UIKit
+import AVFoundation
+
 
 class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.blackColor()
-        // Do any additional setup after loading the view, typically from a nib.
+        // sets up the view and puts out the first scramble
         timerLabel.textColor = UIColor.whiteColor()
+        timerLabel.text = "Start"
         state = .Pending
         generator = scrambleGenerator(num: 3)
         scrambleLabel.textColor = UIColor.whiteColor()
@@ -22,12 +25,13 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         scrambleLabel.text = toString(generator.generate())
         [scrambleLabel .sizeToFit()]
         self.tabBarController?.selectedIndex = 1
-        
-        // Adds a beautiful rounded corner to "dat" viewPicker
-        cubePicker.layer.cornerRadius = 15.0
-        cubePicker.hidden = true
-        
+        //sets up the audio player with the chime sound
+        do{
+            try audioPlayer = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("chime", ofType: "mp3")!) )
+        } catch {
+            NSLog("Error: There's an error with the audio file chime.mp3")
         }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -69,7 +73,26 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     // Changes the Title to the Delected Row
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.title = cubeNames[row]
-        
+        if(self.title == "2x2"){
+            generator = scrambleGenerator(num: 2)
+        }
+        if(self.title == "3x3"){
+            generator = scrambleGenerator(num: 3)
+        }
+        if(self.title == "4x4"){
+            generator = scrambleGenerator(num: 4)
+        }
+        if(self.title == "5x5"){
+            generator = scrambleGenerator(num: 5)
+        }
+        if(self.title == "6x6"){
+            generator = scrambleGenerator(num: 6)
+        }
+        if(self.title == "7x7"){
+            generator = scrambleGenerator(num: 7)
+        }
+        scrambleLabel.text = toString(generator.generate())
+        global.currentCube = self.title!
     }
     
     
@@ -89,20 +112,25 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     private var displayLink: CADisplayLink?
     private var freezeTimer = NSTimer()
     private var inspectionTimer = NSTimer()
-    private var minutes = 0.0
+    private var minuteTimer = NSTimer()
+    private var audioPlayer = AVAudioPlayer()
+    private var minutes = 0
     private var seconds = "0.0"
     private var cubeSize = 3
     private var generator = scrambleGenerator(num: 3)
     private var countDownTime = 15
     private var isCountingDown = false
+    private var isBeingTouched = false
+    
     
     //executed when the freeze timer ends
     func changeColor(){
         timerLabel.textColor = UIColor.greenColor()
     }
-    //new timer stuff that I don't understand
+    
+    //new timer stuff that I kinda understand
     private var startTime: CFAbsoluteTime = 0
-    private var lastTime: CFAbsoluteTime = 0
+    private var lastTime = Time(minutes: 0, sec: 0.00)
     private var endTime: CFAbsoluteTime = 0 {
         didSet {
             updateLabel()
@@ -122,31 +150,49 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     }
     private var elapsedTime: NSTimeInterval {
         switch state {
-        case .Stopped, .Pending: return lastTime
+        case .Stopped, .Pending: return endTime - startTime
         case .Running: return CFAbsoluteTimeGetCurrent() - startTime
         }
     }
+    
     //supposed to update the label with the elapsed time but never does the minute stuff
     private func updateLabel() {
-        seconds = String(format: "%.02f", elapsedTime)
-        if(minutes > 1){
-            seconds = String(format: "%.02f", (60.0 * minutes - elapsedTime))
+        switch state {
+        case .Stopped, .Pending:
+            timerLabel.text = lastTime.toString()
+        case .Running:
+            seconds = String(format: "%.02f", elapsedTime)
+            if(minutes == 0){
+                timerLabel.text = "\(seconds)"
+            }
+            else{
+                seconds = String(format: "%0.02f", elapsedTime - 60.0 * (Double)(minutes))
+                if(elapsedTime - 60.0 * (Double)(minutes) < 10){
+                    timerLabel.text = "\(minutes):0\(seconds)"
+                }
+                else {
+                    timerLabel.text = "\(minutes):\(seconds)"
+                }
+            }
         }
-        if(minutes == 0){
-            timerLabel.text = "\(seconds)"
-        }
-        else {
-            timerLabel.text = "\(minutes):\(seconds)"
-        }
-
     }
     private var state = State.Stopped {
         didSet {
-            updateLabel()
+            
         }
     }
+    
     //what happens for each time you touch down depending on the current state of the timer
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if(isBeingTouched){
+            if cubePicker.hidden == true {
+                cubePicker.hidden = false
+            }
+            else {
+                cubePicker.hidden = true
+            }
+        }
+        isBeingTouched = true
         createDisplayLinkIfNeeded()
         
         switch state {
@@ -167,15 +213,21 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
             }
         case .Running:
             endTime = CFAbsoluteTimeGetCurrent()
-            lastTime = endTime - startTime
             state = .Stopped
             displayLink?.paused = true
             scrambleLabel.text = toString(generator.generate())
             [scrambleLabel .sizeToFit()]
+            minutes = 0
+            minuteTimer.invalidate()
+            lastTime = Time(minutes: minutes, sec: (Double)(elapsedTime) - ((Double)(minutes) * 60.0))
+            addTime(lastTime)
+            //StatisticsViewController().updateAverage()
         }
     }
+    
     // what happens when you pick your finger up depending on the state of the timer
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+       isBeingTouched = false
         if timerLabel.textColor == UIColor.greenColor() {
             if(global.inspectionTime){
                 if(!isCountingDown){
@@ -192,6 +244,8 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
                     state = .Running
                     timerLabel.textColor = UIColor.whiteColor()
                     countDownTime = 15
+                    minuteTimer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(updateMinutes), userInfo: nil, repeats: true)
+                    audioPlayer.play()
                 }
             }
             else{
@@ -199,9 +253,11 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
                 displayLink?.paused = false
                 state = .Running
                 timerLabel.textColor = UIColor.whiteColor()
+                minuteTimer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(updateMinutes), userInfo: nil, repeats: true)
+                audioPlayer.play()
             }
         }
-        if timerLabel.textColor == UIColor.redColor(){
+        else if (timerLabel.textColor == UIColor.redColor()){
             state = .Stopped
             timerLabel.textColor = UIColor.whiteColor()
             freezeTimer.invalidate()
@@ -213,6 +269,12 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
             state = .Pending
         }
     }
+    
+    func updateMinutes(){
+        minutes += 1
+    
+    }
+    
     //shennanigans that I don't understand
     private func createDisplayLinkIfNeeded() {
         guard self.displayLink == nil else { return }
@@ -221,12 +283,11 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
         self.displayLink = displayLink
     }
+    
     func displayLinkDidFire(_: CADisplayLink) {
         updateLabel()
-        if(elapsedTime == 60.00){
-            minutes += 1
-        }
     }
+    
     //puts an array of strings into one big string valuable for printing the scrambles
     func toString(arrayOne: [String?])->String{
         let len = arrayOne.count
@@ -236,6 +297,7 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         }
         return ret
     }
+    
     //fired once per second during the inspection time
     func countDown(){
         countDownTime -= 1
@@ -245,10 +307,9 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
             displayLink?.paused = false
             state = .Running
             inspectionTimer.invalidate()
-            //maybe insert a ding or something here to signify the time starting
+            audioPlayer.play()
             countDownTime = 15
             isCountingDown = false
-
         }
     }
 }

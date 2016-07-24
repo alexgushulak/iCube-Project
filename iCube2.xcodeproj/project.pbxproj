@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		318BE4B21D35D7E7007EBBEF /* globalVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318BE4B11D35D7E7007EBBEF /* globalVars.swift */; };
+		318BE4B81D4031E6007EBBEF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 318BE4B71D4031E6007EBBEF /* AVFoundation.framework */; };
+		318BE4BD1D403616007EBBEF /* chime.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 318BE4BC1D403616007EBBEF /* chime.mp3 */; };
 		31F598C71D2F4C4900B8F731 /* scrambleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F598C61D2F4C4900B8F731 /* scrambleGenerator.swift */; };
 		FA53695F1D35B417007F36F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA53695E1D35B417007F36F6 /* Images.xcassets */; };
 		FAB1A0C71D2DBBFF005ED89E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB1A0C61D2DBBFF005ED89E /* AppDelegate.swift */; };
@@ -38,6 +40,8 @@
 
 /* Begin PBXFileReference section */
 		318BE4B11D35D7E7007EBBEF /* globalVars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = globalVars.swift; sourceTree = "<group>"; };
+		318BE4B71D4031E6007EBBEF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		318BE4BC1D403616007EBBEF /* chime.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = chime.mp3; path = ../../chime.mp3; sourceTree = "<group>"; };
 		31F598C61D2F4C4900B8F731 /* scrambleGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = scrambleGenerator.swift; sourceTree = "<group>"; };
 		FA53695E1D35B417007F36F6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FAB1A0C31D2DBBFF005ED89E /* iCube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iCube.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				318BE4B81D4031E6007EBBEF /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,13 +85,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		318BE4B91D4035BA007EBBEF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FAB1A0C41D2DBBFF005ED89E /* Products */,
+				FAB1A0E51D2DBBFF005ED89E /* iCube2UITests */,
+				318BE4B71D4031E6007EBBEF /* AVFoundation.framework */,
+				FAB1A0DA1D2DBBFF005ED89E /* iCube2Tests */,
+				318BE4BE1D40363A007EBBEF /* audio files */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		318BE4BE1D40363A007EBBEF /* audio files */ = {
+			isa = PBXGroup;
+			children = (
+				318BE4BC1D403616007EBBEF /* chime.mp3 */,
+			);
+			name = "audio files";
+			sourceTree = "<group>";
+		};
 		FAB1A0BA1D2DBBFF005ED89E = {
 			isa = PBXGroup;
 			children = (
 				FAB1A0C51D2DBBFF005ED89E /* iCube2 */,
-				FAB1A0DA1D2DBBFF005ED89E /* iCube2Tests */,
-				FAB1A0E51D2DBBFF005ED89E /* iCube2UITests */,
-				FAB1A0C41D2DBBFF005ED89E /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,6 +120,7 @@
 				FAB1A0E21D2DBBFF005ED89E /* iCube2UITests.xctest */,
 			);
 			name = Products;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		FAB1A0C51D2DBBFF005ED89E /* iCube2 */ = {
@@ -112,6 +135,7 @@
 				FAB1A0D21D2DBBFF005ED89E /* Info.plist */,
 				31F598C61D2F4C4900B8F731 /* scrambleGenerator.swift */,
 				318BE4B11D35D7E7007EBBEF /* globalVars.swift */,
+				318BE4B91D4035BA007EBBEF /* Supporting Files */,
 			);
 			path = iCube2;
 			sourceTree = "<group>";
@@ -123,7 +147,7 @@
 				FAB1A0DD1D2DBBFF005ED89E /* Info.plist */,
 			);
 			path = iCube2Tests;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		FAB1A0E51D2DBBFF005ED89E /* iCube2UITests */ = {
 			isa = PBXGroup;
@@ -132,7 +156,7 @@
 				FAB1A0E81D2DBBFF005ED89E /* Info.plist */,
 			);
 			path = iCube2UITests;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -202,7 +226,7 @@
 				TargetAttributes = {
 					FAB1A0C21D2DBBFF005ED89E = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 2W98QC574T;
+						DevelopmentTeam = J45VL7CX88;
 					};
 					FAB1A0D61D2DBBFF005ED89E = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -239,6 +263,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				318BE4BD1D403616007EBBEF /* chime.mp3 in Resources */,
 				FA53695F1D35B417007F36F6 /* Images.xcassets in Resources */,
 				FAB1A0CC1D2DBBFF005ED89E /* Main.storyboard in Resources */,
 			);
@@ -411,7 +436,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iCube2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dangledev.gushulak.iCube1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dangledev.gushulak.iCube1.10;
 				PRODUCT_NAME = iCube;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -427,7 +452,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iCube2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dangledev.gushulak.iCube1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dangledev.gushulak.iCube1.10;
 				PRODUCT_NAME = iCube;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
