@@ -22,12 +22,15 @@ struct global{
 func average(times: [Time])-> Time {
     var secondsTotal = 0.0
     var minutesTotal = 0
-    for index in 0...(times.capacity-1){
+    if(times.count == 1){
+        return times[0]
+    }
+    for index in 0...(times.count-1){
         secondsTotal += times[index].getSec()
         minutesTotal += times[index].getMins()
     }
-    let minutesAve = (Double)(minutesTotal) / (Double)(times.capacity)
-    var secondsAve = secondsTotal / (Double)(times.capacity)
+    let minutesAve = (Double)(minutesTotal) / (Double)(times.count)
+    var secondsAve = secondsTotal / (Double)(times.count)
     let minutesRemainder = minutesAve % 1
     secondsAve += (minutesRemainder * 60)
     return Time(minutes: Int(minutesAve), sec: secondsAve)

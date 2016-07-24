@@ -22,4 +22,8 @@ class StatisticsViewController: UIViewController {
     
     @IBOutlet weak var averageTime: UILabel!
   
+    func updateAverage() {
+       let aveTime = average(global.solves3)
+       averageTime.text = aveTime.toString()
+    }
 }

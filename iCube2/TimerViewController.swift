@@ -58,14 +58,7 @@ class TimerViewController: UIViewController {
     private var generator = scrambleGenerator(num: 3)
     private var countDownTime = 15
     private var isCountingDown = false
-    private var segID = "mySegueID"
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == segID){
-            let destViewController : StatisticsViewController = segue.destinationViewController as! StatisticsViewController
-            destViewController.averageTime.text = average(global.solves3).toString()
-        }
-    }
     
     //executed when the freeze timer ends
     func changeColor(){
@@ -157,7 +150,7 @@ class TimerViewController: UIViewController {
             lastTime = Time(minutes: minutes, sec: (Double)(elapsedTime))
             global.solves3.append(lastTime)
             timerLabel.text = lastTime.toString()
-            //performSegueWithIdentifier(segID, sender: self)
+            StatisticsViewController().updateAverage()
         }
     }
     
@@ -242,7 +235,6 @@ class TimerViewController: UIViewController {
             displayLink?.paused = false
             state = .Running
             inspectionTimer.invalidate()
-            //maybe insert a ding or something here to signify the time starting
             audioPlayer.play()
             countDownTime = 15
             isCountingDown = false
