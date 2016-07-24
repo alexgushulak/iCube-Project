@@ -17,6 +17,7 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         self.view.backgroundColor = UIColor.blackColor()
         // sets up the view and puts out the first scramble
         timerLabel.textColor = UIColor.whiteColor()
+        timerLabel.text = "Start"
         state = .Pending
         generator = scrambleGenerator(num: 3)
         scrambleLabel.textColor = UIColor.whiteColor()
@@ -30,7 +31,7 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         } catch {
             NSLog("Error: There's an error with the audio file chime.mp3")
         }
-        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -72,7 +73,26 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     // Changes the Title to the Delected Row
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.title = cubeNames[row]
-        
+        if(self.title == "2x2"){
+            generator = scrambleGenerator(num: 2)
+        }
+        if(self.title == "3x3"){
+            generator = scrambleGenerator(num: 3)
+        }
+        if(self.title == "4x4"){
+            generator = scrambleGenerator(num: 4)
+        }
+        if(self.title == "5x5"){
+            generator = scrambleGenerator(num: 5)
+        }
+        if(self.title == "6x6"){
+            generator = scrambleGenerator(num: 6)
+        }
+        if(self.title == "7x7"){
+            generator = scrambleGenerator(num: 7)
+        }
+        scrambleLabel.text = toString(generator.generate())
+        global.currentCube = self.title!
     }
     
     
@@ -100,6 +120,7 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     private var generator = scrambleGenerator(num: 3)
     private var countDownTime = 15
     private var isCountingDown = false
+    private var isBeingTouched = false
     
     
     //executed when the freeze timer ends
@@ -157,12 +178,21 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     }
     private var state = State.Stopped {
         didSet {
-            updateLabel()
+            
         }
     }
     
     //what happens for each time you touch down depending on the current state of the timer
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if(isBeingTouched){
+            if cubePicker.hidden == true {
+                cubePicker.hidden = false
+            }
+            else {
+                cubePicker.hidden = true
+            }
+        }
+        isBeingTouched = true
         createDisplayLinkIfNeeded()
         
         switch state {
@@ -189,15 +219,15 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
             [scrambleLabel .sizeToFit()]
             minutes = 0
             minuteTimer.invalidate()
-            lastTime = Time(minutes: minutes, sec: (Double)(elapsedTime))
-            global.solves3.append(lastTime)
-            timerLabel.text = lastTime.toString()
-            StatisticsViewController().updateAverage()
+            lastTime = Time(minutes: minutes, sec: (Double)(elapsedTime) - ((Double)(minutes) * 60.0))
+            addTime(lastTime)
+            //StatisticsViewController().updateAverage()
         }
     }
     
     // what happens when you pick your finger up depending on the state of the timer
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+       isBeingTouched = false
         if timerLabel.textColor == UIColor.greenColor() {
             if(global.inspectionTime){
                 if(!isCountingDown){
@@ -227,7 +257,7 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
                 audioPlayer.play()
             }
         }
-        else if timerLabel.textColor == UIColor.redColor(){
+        else if (timerLabel.textColor == UIColor.redColor()){
             state = .Stopped
             timerLabel.textColor = UIColor.whiteColor()
             freezeTimer.invalidate()

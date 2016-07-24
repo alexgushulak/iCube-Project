@@ -9,6 +9,7 @@
 import Foundation
 
 struct global{
+    static var currentCube = "3x3"
     static var inspectionTime = false
     static var freezeTime = true
     static var solves2: [Time] = []
@@ -34,6 +35,27 @@ func average(times: [Time])-> Time {
     let minutesRemainder = minutesAve % 1
     secondsAve += (minutesRemainder * 60)
     return Time(minutes: Int(minutesAve), sec: secondsAve)
+}
+
+func addTime(time: Time){
+    if(global.currentCube == "2x2"){
+        global.solves2.append(time)
+    }
+    if(global.currentCube == "3x3"){
+        global.solves3.append(time)
+    }
+    if(global.currentCube == "4x4"){
+        global.solves4.append(time)
+    }
+    if(global.currentCube == "5x5"){
+        global.solves5.append(time)
+    }
+    if(global.currentCube == "6x6"){
+        global.solves6.append(time)
+    }
+    if(global.currentCube == "7x7"){
+        global.solves7.append(time)
+    }
 }
 
 class Time {
