@@ -39,6 +39,8 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         else {
             cubePicker.hidden = true
         }
+        state = .Pending
+        timerLabel.textColor = UIColor.whiteColor()
     }
     
     override func didReceiveMemoryWarning() {
@@ -126,7 +128,6 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     private var generator = scrambleGenerator(num: 3)
     private var countDownTime = 15
     private var isCountingDown = false
-    private var isBeingTouched = false
     
     
     //executed when the freeze timer ends
@@ -190,17 +191,7 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     
     //what happens for each time you touch down depending on the current state of the timer
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if(isBeingTouched){
-            if cubePicker.hidden == true {
-                cubePicker.hidden = false
-            }
-            else {
-                cubePicker.hidden = true
-            }
-        }
-        isBeingTouched = true
         createDisplayLinkIfNeeded()
-        
         switch state {
         case .Stopped:
             state = .Pending
@@ -234,7 +225,6 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     
     // what happens when you pick your finger up depending on the state of the timer
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-       isBeingTouched = false
         if timerLabel.textColor == UIColor.greenColor() {
             if(global.inspectionTime){
                 if(!isCountingDown){
