@@ -9,6 +9,7 @@
 import Foundation
 
 struct global{
+    static var lastSolve = Time(minutes: 0, sec: 0.0)
     static var currentCube = "3x3"
     static var inspectionTime = false
     static var freezeTime = true
@@ -18,11 +19,15 @@ struct global{
     static var solves5: [Time] = []
     static var solves6: [Time] = []
     static var solves7: [Time] = []
+    static var currentSolves: [Time] = []
 }
 
 func average(times: [Time])-> Time {
     var secondsTotal = 0.0
     var minutesTotal = 0
+    if(times.count == 0){
+        return Time(minutes: 0, sec: 0.0)
+    }
     if(times.count == 1){
         return times[0]
     }
@@ -38,6 +43,7 @@ func average(times: [Time])-> Time {
 }
 
 func addTime(time: Time){
+    global.currentSolves.append(time)
     if(global.currentCube == "2x2"){
         global.solves2.append(time)
     }
@@ -81,4 +87,10 @@ class Time {
     func getSec()->Double{
         return seconds
     }
+    func toSec()->Double {
+        var secs = seconds
+        secs += Double(mins) * 60.0
+        return secs
+    }
+    
 }
