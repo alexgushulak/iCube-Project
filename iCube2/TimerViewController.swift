@@ -26,10 +26,18 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         [scrambleLabel .sizeToFit()]
         self.tabBarController?.selectedIndex = 1
         //sets up the audio player with the chime sound
-        do{
-            try audioPlayer = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("chime", ofType: "mp3")!) )
-        } catch {
-            NSLog("Error: There's an error with the audio file chime.mp3")
+        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
+        tap.numberOfTapsRequired = 2
+        view.addGestureRecognizer(tap)
+        cubePicker.hidden = true
+    }
+    
+    func doubleTapped() {
+        if cubePicker.hidden == true {
+            cubePicker.hidden = false
+        }
+        else {
+            cubePicker.hidden = true
         }
     }
     
@@ -60,15 +68,6 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         return cubeNames[row]
     }
    
-    @IBAction func OnOffButton(sender: AnyObject) {
-        if cubePicker.hidden == true {
-            cubePicker.hidden = false
-        }
-        else {
-            cubePicker.hidden = true
-        }
-        
-    }
     
     // Changes the Title to the Delected Row
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -262,7 +261,6 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
                 state = .Running
                 timerLabel.textColor = UIColor.whiteColor()
                 minuteTimer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(updateMinutes), userInfo: nil, repeats: true)
-                audioPlayer.play()
             }
         }
         else if (timerLabel.textColor == UIColor.redColor()){
