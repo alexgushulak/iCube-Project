@@ -23,7 +23,7 @@ class StatisticsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     func refreshAve(notification: NSNotification) {
-        let aveTime = average(global.currentSolves).getMins()
+        let aveTime = average(global.currentSolves).toString()
         averageTime.text = "\(aveTime)"
     }
     
