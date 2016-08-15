@@ -43,7 +43,7 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
             self.scrambleLabel.center.y += 10
         }, completion: nil)
         
-        // Beautification
+        // Beautification2
         cubePicker.layer.cornerRadius = 20
         self.cubePicker.alpha = 0
         
