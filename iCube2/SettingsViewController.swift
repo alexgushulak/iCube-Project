@@ -17,7 +17,7 @@ class SettingsViewController: UIViewController {
         freezeTimeSwitch.addTarget(self, action: #selector(SettingsViewController.freezeSwitchIsChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         inspectionTimeSwitch.addTarget(self, action: #selector(SettingsViewController.inspectionSwitchIsChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         inspectionTimeSwitch.setOn(false, animated: false)
-        // Dyynamically Integrated Off Swith Setting Recommended
+        // Dynamically Integrated Off Swith Setting Recommended
         
     }
     
@@ -29,6 +29,17 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var freezeTimeSwitch: UISwitch!
     
     @IBOutlet weak var inspectionTimeSwitch: UISwitch!
+    
+    @IBOutlet weak var blackScreenSwitch: UISwitch!
+    
+    func blackScreenToggled(mySwitch: UISwitch) {
+        if mySwitch.on {
+            global.blackScreen = true
+        } else {
+            global.blackScreen = false
+        }
+        
+    }
     
     func freezeSwitchIsChanged(mySwitch: UISwitch) {
         if mySwitch.on {

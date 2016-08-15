@@ -13,6 +13,7 @@ struct global{
     static var currentCube = "3x3"
     static var inspectionTime = false
     static var freezeTime = true
+    static var blackScreen = false
     static var solves2: [Time] = []
     static var solves3: [Time] = []
     static var solves4: [Time] = []

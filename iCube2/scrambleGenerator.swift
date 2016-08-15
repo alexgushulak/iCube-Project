@@ -19,7 +19,7 @@ class scrambleGenerator {
     init(num: Int) {
         sides = num
         if(sides == 2){
-            len = 20
+            len = 10
         }
         else if(sides == 3){
             len = 25

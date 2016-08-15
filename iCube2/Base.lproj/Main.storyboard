@@ -44,12 +44,12 @@
                                 <rect key="frame" x="0.0" y="255" width="600" height="90"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Start" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMb-ce-T3G">
-                                        <rect key="frame" x="157" y="0.0" width="297" height="90"/>
+                                        <rect key="frame" x="157" y="-5" width="297" height="90"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="90" id="eDe-R4-Naq"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="74"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -63,6 +63,16 @@
                                     <constraint firstAttribute="height" constant="90" id="kEO-np-chF"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scramble" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Lp9-ao-LJz">
+                                <rect key="frame" x="139" y="95" width="323" height="157"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="323" id="gux-jz-lcp"/>
+                                    <constraint firstAttribute="height" constant="157" id="j38-YF-fVh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bf7-R8-hs4">
                                 <rect key="frame" x="162" y="353" width="276" height="216"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -75,16 +85,6 @@
                                     <outlet property="delegate" destination="Aay-aK-GO8" id="cHu-Xw-ksG"/>
                                 </connections>
                             </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scramble" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Lp9-ao-LJz">
-                                <rect key="frame" x="139" y="95" width="323" height="157"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="323" id="gux-jz-lcp"/>
-                                    <constraint firstAttribute="height" constant="157" id="j38-YF-fVh"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -101,7 +101,13 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Timer" image="Timer" selectedImage="Timer" id="uSo-xD-o1p"/>
-                    <navigationItem key="navigationItem" title="3x3" id="5QU-Ki-kJb"/>
+                    <navigationItem key="navigationItem" title="3x3" id="5QU-Ki-kJb">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                <color key="value" red="0.93879949093188808" green="1" blue="0.4798478617989973" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
                     <connections>
                         <outlet property="cubePicker" destination="bf7-R8-hs4" id="bTP-e7-Lon"/>
                         <outlet property="scrambleLabel" destination="Lp9-ao-LJz" id="uHC-9n-XLS"/>
@@ -184,6 +190,7 @@
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ndr-6L-oy6">
                                         <rect key="frame" x="543" y="11" width="51" height="31"/>
+                                        <color key="onTintColor" red="1" green="0.97614073440000004" blue="0.45965598479999997" alpha="1" colorSpace="calibratedRGB"/>
                                     </switch>
                                 </subviews>
                                 <color key="backgroundColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
@@ -201,6 +208,7 @@
                                 <subviews>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6xp-Ll-0ct">
                                         <rect key="frame" x="543" y="11" width="51" height="31"/>
+                                        <color key="onTintColor" red="1" green="0.97614073440000004" blue="0.45965598479999997" alpha="1" colorSpace="calibratedRGB"/>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Freeze Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMY-5I-ryr">
                                         <rect key="frame" x="8" y="0.0" width="132" height="54"/>
@@ -229,7 +237,7 @@
                                     <constraint firstAttribute="width" constant="53" id="lH8-Wh-VZN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="textColor" red="0.56612509713346659" green="0.90830232151055723" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.97614073440000004" blue="0.45965598479999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hG8-sH-t2T">
@@ -256,7 +264,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="iCube" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCE-4g-F9s">
                                 <rect key="frame" x="20" y="232" width="45" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.50196078431372548" green="0.8901960784313725" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.97614073440000004" blue="0.45965598479999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SL0-YH-hYb">
@@ -285,9 +293,12 @@
                                     <constraint firstAttribute="width" constant="65" id="iwC-jN-OGp"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="textColor" red="0.50196078431372548" green="0.8901960784313725" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.97614073440000004" blue="0.45965598479999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jkf-G0-mpF">
+                                <rect key="frame" x="513" y="224" width="51" height="31"/>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -314,6 +325,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="lxy-hA-Lb6"/>
                     <connections>
+                        <outlet property="blackScreenSwitch" destination="Jkf-G0-mpF" id="Ydp-Tc-OOY"/>
                         <outlet property="freezeTimeSwitch" destination="6xp-Ll-0ct" id="jcK-AL-PxD"/>
                         <outlet property="inspectionTimeSwitch" destination="Ndr-6L-oy6" id="4FA-kF-p7c"/>
                     </connections>
@@ -331,8 +343,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="1" green="0.97614073440000004" blue="0.45965598479999997" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="selectedImageTintColor" red="0.093699502500000004" green="0.93667649860000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" red="1" green="0.97614073440000004" blue="0.45965598479999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.98587291454717041" green="1" blue="0.43435734261605008" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="3kp-Bp-wBu" kind="relationship" relationship="viewControllers" id="B2x-T3-DM4"/>
