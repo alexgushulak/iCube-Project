@@ -32,6 +32,7 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         tap.numberOfTapsRequired = 2
         view.addGestureRecognizer(tap)
         cubePicker.hidden = true
+<<<<<<< HEAD
         self.timerLabel.alpha = 0
         self.scrambleLabel.alpha = 0
         
@@ -46,6 +47,30 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         // Beautification2
         cubePicker.layer.cornerRadius = 20
         self.cubePicker.alpha = 0
+=======
+        let averages = NSUserDefaults.standardUserDefaults()
+        if(averages.valueForKey("setSolves") != nil){
+            global.allSolves = averages.valueForKey("setSolves") as! [[Time]]
+            global.solves2 = global.allSolves[0]
+            global.solves3 = global.allSolves[1]
+            global.solves4 = global.allSolves[2]
+            global.solves5 = global.allSolves[3]
+            global.solves6 = global.allSolves[4]
+            global.solves7 = global.allSolves[5]
+        }
+    }
+    
+    func doubleTapped() {
+        if cubePicker.hidden == true {
+            cubePicker.hidden = false
+        }
+        else {
+            cubePicker.hidden = true
+        }
+        state = .Pending
+        timerLabel.textColor = UIColor.whiteColor()
+        minuteTimer.invalidate()
+>>>>>>> master-branch
         
     }
     
@@ -199,6 +224,7 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     
     //what happens for each time you touch down depending on the current state of the timer
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+<<<<<<< HEAD
         createDisplayLinkIfNeeded()
         switch state {
         case .Stopped:
@@ -214,25 +240,48 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
                 }
                 else{
                     timerLabel.textColor = UIColor(red: 0.3765, green: 0.9686, blue: 0.4078, alpha: 1.0)
+=======
+        if(cubePicker.hidden){
+            createDisplayLinkIfNeeded()
+            switch state {
+            case .Stopped:
+                state = .Pending
+            case .Pending:
+                if(isCountingDown){
+                        timerLabel.textColor = UIColor.greenColor()
                 }
+                if(timerLabel.textColor == UIColor.whiteColor()){
+                    timerLabel.textColor = UIColor.redColor()
+                    if(global.freezeTime){
+                        freezeTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(changeColor), userInfo: nil, repeats: false)
+                    }
+                    else{
+                        timerLabel.textColor = UIColor.greenColor()
+                    }
+>>>>>>> master-branch
+                }
+            case .Running:
+                endTime = CFAbsoluteTimeGetCurrent()
+                state = .Stopped
+                displayLink?.paused = true
+                scrambleLabel.text = toString(generator.generate())
+                [scrambleLabel .sizeToFit()]
+                minuteTimer.invalidate()
+                lastTime = Time(minutes: minutes, sec: (Double)(elapsedTime) - ((Double)(minutes) * 60.0))
+                addTime(lastTime)
+                NSNotificationCenter.defaultCenter().postNotificationName("refresh", object: nil, userInfo: nil)
+                minutes = 0
+                let averages = NSUserDefaults.standardUserDefaults()
+                var solves = global.allSolves
+                averages.setValue(solves, forKey: "setSolves")
+                averages.synchronize()
             }
-        case .Running:
-            endTime = CFAbsoluteTimeGetCurrent()
-            state = .Stopped
-            displayLink?.paused = true
-            scrambleLabel.text = toString(generator.generate())
-            [scrambleLabel .sizeToFit()]
-            minuteTimer.invalidate()
-            lastTime = Time(minutes: minutes, sec: (Double)(elapsedTime) - ((Double)(minutes) * 60.0))
-            global.lastSolve = lastTime
-            addTime(lastTime)
-            NSNotificationCenter.defaultCenter().postNotificationName("refresh", object: nil, userInfo: nil)
-             minutes = 0
         }
     }
     
     // what happens when you pick your finger up depending on the state of the timer
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+<<<<<<< HEAD
         if timerLabel.textColor == UIColor(red: 0.3765, green: 0.9686, blue: 0.4078, alpha: 1.0) {
             if(global.inspectionTime){
                 if(!isCountingDown){
@@ -240,23 +289,40 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
                     inspectionTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector:   #selector(countDown), userInfo: nil, repeats: true)
                     timerLabel.textColor = UIColor.whiteColor()
                     timerLabel.text = "\(countDownTime)"
+=======
+            if timerLabel.textColor == UIColor.greenColor() {
+                if(global.inspectionTime){
+                    if(!isCountingDown){
+                        isCountingDown = true
+                        inspectionTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector:   #selector(countDown), userInfo: nil, repeats: true)
+                        timerLabel.textColor = UIColor.whiteColor()
+                        timerLabel.text = "\(countDownTime)"
+                    }
+                    else {
+                        inspectionTimer.invalidate()
+                        isCountingDown = false
+                        startTime = CFAbsoluteTimeGetCurrent()
+                        displayLink?.paused = false
+                        state = .Running
+                        timerLabel.textColor = UIColor.whiteColor()
+                        countDownTime = 15
+                        minuteTimer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(updateMinutes), userInfo: nil, repeats: true)
+                        //audioPlayer.play()
+                    }
+>>>>>>> master-branch
                 }
-                else {
-                    inspectionTimer.invalidate()
-                    isCountingDown = false
+                else{
                     startTime = CFAbsoluteTimeGetCurrent()
                     displayLink?.paused = false
                     state = .Running
                     timerLabel.textColor = UIColor.whiteColor()
-                    countDownTime = 15
                     minuteTimer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(updateMinutes), userInfo: nil, repeats: true)
                 }
             }
-            else{
-                startTime = CFAbsoluteTimeGetCurrent()
-                displayLink?.paused = false
-                state = .Running
+            else if (timerLabel.textColor == UIColor.redColor()){
+                state = .Stopped
                 timerLabel.textColor = UIColor.whiteColor()
+<<<<<<< HEAD
                 minuteTimer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(updateMinutes), userInfo: nil, repeats: true)
             }
         }
@@ -266,11 +332,16 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
             freezeTimer.invalidate()
             startTime = CFAbsoluteTimeGetCurrent()
             endTime = CFAbsoluteTimeGetCurrent()
+=======
+                freezeTimer.invalidate()
+                startTime = CFAbsoluteTimeGetCurrent()
+                endTime = CFAbsoluteTimeGetCurrent()
+>>>>>>> master-branch
 
-        }
-        if(state == .Stopped){
-            state = .Pending
-        }
+            }
+            if(state == .Stopped){
+                state = .Pending
+            }
     }
     
     func updateMinutes(){
