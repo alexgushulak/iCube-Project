@@ -69,7 +69,7 @@ class scrambleGenerator {
                     opposite = "U"
                 }
                 } while(index > 0 && (last![0] == str  || last![0] == opposite))
-                if((sides == 4 || sides == 5) && rand % 4 == 1){
+                if((sides == 4 || sides == 5) && (rand % 4 == 1 || rand % 5 == 3)){
                     str = "\(str)w"
                 }
                 if(sides == 6 || sides == 7){
