@@ -25,21 +25,22 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         scrambleLabel.text = toString(generator.generate())
         [scrambleLabel .sizeToFit()]
         self.tabBarController?.selectedIndex = 1
-        //sets up the audio player with the chime sound
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
         tap.numberOfTapsRequired = 2
         view.addGestureRecognizer(tap)
         cubePicker.hidden = true
+       
         let averages = NSUserDefaults.standardUserDefaults()
-        if(averages.valueForKey("setSolves") != nil){
-            global.allSolves = averages.valueForKey("setSolves") as! [[Time]]
-            global.solves2 = global.allSolves[0]
-            global.solves3 = global.allSolves[1]
-            global.solves4 = global.allSolves[2]
-            global.solves5 = global.allSolves[3]
-            global.solves6 = global.allSolves[4]
-            global.solves7 = global.allSolves[5]
-        }
+//        if let testSolves : AnyObject? = (averages.valueForKey("setSolves")){
+//            global.allSolves = testSolves as! [[Time]]
+//            global.solves2 = global.allSolves[0]
+//            global.solves3 = global.allSolves[1]
+//            global.solves4 = global.allSolves[2]
+//            global.solves5 = global.allSolves[3]
+//            global.solves6 = global.allSolves[4]
+//            global.solves7 = global.allSolves[5]
+//        }
     }
     
     func doubleTapped() {
@@ -140,7 +141,7 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     private var generator = scrambleGenerator(num: 3)
     private var countDownTime = 15
     private var isCountingDown = false
-    
+    private var solves = global.allSolves
     
     //executed when the freeze timer ends
     func changeColor(){
@@ -232,10 +233,10 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
                 addTime(lastTime)
                 NSNotificationCenter.defaultCenter().postNotificationName("refresh", object: nil, userInfo: nil)
                 minutes = 0
-                let averages = NSUserDefaults.standardUserDefaults()
-                var solves = global.allSolves
-                //averages.setValue(solves, forKey: "setSolves")
-                averages.synchronize()
+                let allSolves = NSUserDefaults.standardUserDefaults()
+                solves = global.allSolves
+                allSolves.setValue(solves, forKey: "setSolves")
+                allSolves.synchronize()
             }
         }
     }
@@ -285,7 +286,9 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     
     func updateMinutes(){
         minutes += 1
-    
+        if(minutes == 60){
+            state = .Stopped
+        }
     }
     
     //shennanigans that I don't understand
