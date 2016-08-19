@@ -66,7 +66,7 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     }
     
     // View Picker for the Cube Picker
-    let cubeNames = ["2x2", "3x3", "4x4", "5x5", "6x6", "7x7", "Megaminx", "Skewb", "Square-1", "Pyraminx"]
+    let cubeNames = ["2x2", "3x3", "4x4", "5x5", "6x6", "7x7"]
     
     @IBOutlet weak var cubePicker: UIPickerView!
     
