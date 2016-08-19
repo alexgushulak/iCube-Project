@@ -77,9 +77,15 @@ class Time {
     func toString()->String{
         let sec = String(format: "%0.02f", seconds)
         if(mins == 0){
+            if(seconds < 10){
+                return "0\(sec)"
+            }
             return "\(sec)"
         }
         else {
+            if(seconds < 10){
+                return "0\(sec)"
+            }
             return "\(mins):\(sec)"
         }
     }

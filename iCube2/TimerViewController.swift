@@ -234,7 +234,7 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
                 minutes = 0
                 let averages = NSUserDefaults.standardUserDefaults()
                 var solves = global.allSolves
-                averages.setValue(solves, forKey: "setSolves")
+                //averages.setValue(solves, forKey: "setSolves")
                 averages.synchronize()
             }
         }
