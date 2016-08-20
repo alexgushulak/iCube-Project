@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31139F381D66D558008064AF /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31139F371D66D558008064AF /* StatisticsViewController.swift */; };
 		318BE4B21D35D7E7007EBBEF /* globalVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318BE4B11D35D7E7007EBBEF /* globalVars.swift */; };
 		318BE4B81D4031E6007EBBEF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 318BE4B71D4031E6007EBBEF /* AVFoundation.framework */; };
 		31F598C71D2F4C4900B8F731 /* scrambleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F598C61D2F4C4900B8F731 /* scrambleGenerator.swift */; };
@@ -15,7 +16,6 @@
 		FAB1A0CC1D2DBBFF005ED89E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAB1A0CA1D2DBBFF005ED89E /* Main.storyboard */; };
 		FAB1A0DC1D2DBBFF005ED89E /* iCube2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB1A0DB1D2DBBFF005ED89E /* iCube2Tests.swift */; };
 		FAB1A0E71D2DBBFF005ED89E /* iCube2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB1A0E61D2DBBFF005ED89E /* iCube2UITests.swift */; };
-		FAB1A0F51D2DC411005ED89E /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB1A0F41D2DC411005ED89E /* StatisticsViewController.swift */; };
 		FAB1A0F71D2DC429005ED89E /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB1A0F61D2DC429005ED89E /* TimerViewController.swift */; };
 		FAB1A0F91D2DC433005ED89E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB1A0F81D2DC433005ED89E /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		31139F371D66D558008064AF /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		318BE4B11D35D7E7007EBBEF /* globalVars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = globalVars.swift; sourceTree = "<group>"; };
 		318BE4B71D4031E6007EBBEF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		31F598C61D2F4C4900B8F731 /* scrambleGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = scrambleGenerator.swift; sourceTree = "<group>"; };
@@ -52,7 +53,6 @@
 		FAB1A0E21D2DBBFF005ED89E /* iCube2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iCube2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB1A0E61D2DBBFF005ED89E /* iCube2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCube2UITests.swift; sourceTree = "<group>"; };
 		FAB1A0E81D2DBBFF005ED89E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FAB1A0F41D2DC411005ED89E /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		FAB1A0F61D2DC429005ED89E /* TimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		FAB1A0F81D2DC433005ED89E /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,9 +124,9 @@
 			isa = PBXGroup;
 			children = (
 				FAB1A0C61D2DBBFF005ED89E /* AppDelegate.swift */,
-				FAB1A0F41D2DC411005ED89E /* StatisticsViewController.swift */,
 				FAB1A0F61D2DC429005ED89E /* TimerViewController.swift */,
 				FAB1A0F81D2DC433005ED89E /* SettingsViewController.swift */,
+				31139F371D66D558008064AF /* StatisticsViewController.swift */,
 				FAB1A0CA1D2DBBFF005ED89E /* Main.storyboard */,
 				FA53695E1D35B417007F36F6 /* Images.xcassets */,
 				FAB1A0D21D2DBBFF005ED89E /* Info.plist */,
@@ -287,9 +287,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAB1A0F71D2DC429005ED89E /* TimerViewController.swift in Sources */,
-				FAB1A0F51D2DC411005ED89E /* StatisticsViewController.swift in Sources */,
 				318BE4B21D35D7E7007EBBEF /* globalVars.swift in Sources */,
 				FAB1A0F91D2DC433005ED89E /* SettingsViewController.swift in Sources */,
+				31139F381D66D558008064AF /* StatisticsViewController.swift in Sources */,
 				FAB1A0C71D2DBBFF005ED89E /* AppDelegate.swift in Sources */,
 				31F598C71D2F4C4900B8F731 /* scrambleGenerator.swift in Sources */,
 			);

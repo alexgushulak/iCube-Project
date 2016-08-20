@@ -31,16 +31,6 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         view.addGestureRecognizer(tap)
         cubePicker.hidden = true
        
-        let averages = NSUserDefaults.standardUserDefaults()
-//        if let testSolves : AnyObject? = (averages.valueForKey("setSolves")){
-//            global.allSolves = testSolves as! [[Time]]
-//            global.solves2 = global.allSolves[0]
-//            global.solves3 = global.allSolves[1]
-//            global.solves4 = global.allSolves[2]
-//            global.solves5 = global.allSolves[3]
-//            global.solves6 = global.allSolves[4]
-//            global.solves7 = global.allSolves[5]
-//        }
     }
     
     func doubleTapped() {
@@ -90,26 +80,32 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         if(self.title == "2x2"){
             generator = scrambleGenerator(num: 2)
             global.currentSolves = global.solves2
+            global.currentBest = global.best2
         }
         if(self.title == "3x3"){
             generator = scrambleGenerator(num: 3)
             global.currentSolves = global.solves3
+            global.currentBest = global.best3
         }
         if(self.title == "4x4"){
             generator = scrambleGenerator(num: 4)
             global.currentSolves = global.solves4
+            global.currentBest = global.best4
         }
         if(self.title == "5x5"){
             generator = scrambleGenerator(num: 5)
             global.currentSolves = global.solves5
+            global.currentBest = global.best5
         }
         if(self.title == "6x6"){
             generator = scrambleGenerator(num: 6)
             global.currentSolves = global.solves6
+            global.currentBest = global.best6
         }
         if(self.title == "7x7"){
             generator = scrambleGenerator(num: 7)
             global.currentSolves = global.solves7
+            global.currentBest = global.best7
         }
         scrambleLabel.text = toString(generator.generate())
         global.currentCube = self.title!
@@ -233,10 +229,6 @@ class TimerViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
                 addTime(lastTime)
                 NSNotificationCenter.defaultCenter().postNotificationName("refresh", object: nil, userInfo: nil)
                 minutes = 0
-                let allSolves = NSUserDefaults.standardUserDefaults()
-                solves = global.allSolves
-                allSolves.setValue(solves, forKey: "setSolves")
-                allSolves.synchronize()
             }
         }
     }

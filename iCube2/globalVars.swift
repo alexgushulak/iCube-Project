@@ -20,7 +20,13 @@ struct global{
     static var solves7: [Time] = []
     static var currentSolves: [Time] = []
     static var allSolves = [solves2, solves3, solves4, solves5, solves6, solves7]
-    
+    static var best2 = Time(minutes: 0 , sec: 0)
+    static var best3 = Time(minutes: 0 , sec: 0)
+    static var best4 = Time(minutes: 0 , sec: 0)
+    static var best5 = Time(minutes: 0 , sec: 0)
+    static var best6 = Time(minutes: 0 , sec: 0)
+    static var best7 = Time(minutes: 0 , sec: 0)
+    static var currentBest = Time(minutes: 0 , sec: 0)
 }
 
 func average(times: [Time])-> Time {
@@ -77,15 +83,9 @@ class Time {
     func toString()->String{
         let sec = String(format: "%0.02f", seconds)
         if(mins == 0){
-            if(seconds < 10){
-                return "0\(sec)"
-            }
             return "\(sec)"
         }
         else {
-            if(seconds < 10){
-                return "0\(sec)"
-            }
             return "\(mins):\(sec)"
         }
     }
@@ -100,5 +100,17 @@ class Time {
         secs += Double(mins) * 60.0
         return secs
     }
-    
+    func compare(time2: Time)->Time {
+        let time1 = self
+        if(time1.getMins() < time2.getMins()){
+            return time1
+        }
+        if(time2.getMins() < time1.getMins()){
+            return time2
+        }
+        if (time1.getSec() < time2.getSec()){
+            return time1
+        }
+        return time2
+    }
 }
